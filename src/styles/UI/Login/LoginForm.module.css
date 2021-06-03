@@ -29,19 +29,27 @@
 
 .form h3{
   text-align: center;
+  margin-top: 1rem;
   margin-bottom: 3rem;
 }
 
 .form__control label,
 .form__control input {
   display: block;
-  width: 100%;
-  margin-bottom: 0.75rem;
+  width: 90%;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+
+.form__control label {
+  margin-top: 0.75rem;
+  left: 5%;
 }
 
 .form__control input {
   font: inherit;
-  padding: 0.2rem 0.25rem;
+  padding: 0.2rem 0.2rem;
+  margin: auto;
 }
 
 .form__control input:focus {
@@ -50,19 +58,27 @@
 }
 
 .form__check {
+  left: 5%;
   display: inline-block;
   margin: 1rem 0;
 }
 
+.form__check label {
+  margin-left: 10px;
+  vertical-align: center;
+}
+
 .form__submit button {
-  width: 100%;
+  width: 90%;
+  left: 5%;
   background-color: #388E3C;
 }
 
 .form__help button {
   display: block;
   margin: auto;
-  width: 20rem;
+  margin-top: 5px;
+  width: 15rem;
   border: inherit;
   background-color: inherit;
   color: #03A9F4;

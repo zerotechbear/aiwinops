@@ -25,6 +25,8 @@ const description = [
 
 const ProjectContent = () => {
   const { Content } = Layout;
+  
+  const projectLeg = 5;
 
   return (
     <Content className={classes.content}>
@@ -34,7 +36,7 @@ const ProjectContent = () => {
       </div>
       <div className={classes.projects}>
         <div>
-          {<Table columns={description} />}
+          {projectLeg && <Table columns={description} />}
         </div>
       </div>
     </Content>

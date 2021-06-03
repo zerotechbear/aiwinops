@@ -57,7 +57,7 @@ const LoginForm = () => {
                 <input
                   type='text'
                   id='text'
-                  placeholder='Password'
+                  placeholder='password'
                   ref={passwordRef}
                   required
                 />
@@ -65,7 +65,7 @@ const LoginForm = () => {
                 <input
                   type='password'
                   id='password'
-                  placeholder='Password'
+                  placeholder='password'
                   ref={passwordRef}
                   required
                 />

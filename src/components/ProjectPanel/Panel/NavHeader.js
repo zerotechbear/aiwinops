@@ -36,7 +36,7 @@ const NavHeader = () => {
   return (
     <Header className={classes.header}>
       <span className={classes.logo}>
-        <NavLink to='/home'>AIWin</NavLink>
+        <NavLink to='/home'>AIWinOps</NavLink>
       </span>
       <nav className={classes.nav}>
         <div className={classes.menu}>
@@ -44,6 +44,7 @@ const NavHeader = () => {
             <Search
               placeholder='Search Project'
               onSearch={searchProjectHandler}
+              className={classes.search}
             />
             {navLinks.map((link, index) => (
               <li key={index}>
