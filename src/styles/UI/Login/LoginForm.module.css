@@ -1,3 +1,20 @@
+
+
+.logo {
+  position: absolute;
+  width: 5rem;
+  height: 10rem;
+  top: -2rem;
+  left: 50%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  background-image: url('../../../assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  text-align: center;
+}
+
 .login {
   display: block;
   position: relative;
