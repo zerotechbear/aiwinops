@@ -1,8 +1,11 @@
 import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import classes from '../../../styles/UI/Login/ResetForm.module.css';
 
-import Card from '../Layout/Card';
+import { Input } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+import classes from '../../styles/Login/ResetForm.module.css';
+
+import Card from '../UI/Layout/Card';
 
 const ResetForm = (props) => {
   const resetRef = useRef();
@@ -24,10 +27,10 @@ const ResetForm = (props) => {
           onSubmit={submitResetHandler}>
           <div className={classes.form__control}>
             <h3>Reset Password</h3>
-            <label htmlFor='email'>Email</label>
-            <input
+            <Input
+              className={classes.input}
               type='text'
-              id='email'
+              prefix={<MailOutlined />}
               placeholder='name@domain.com'
               ref={resetRef}
               required

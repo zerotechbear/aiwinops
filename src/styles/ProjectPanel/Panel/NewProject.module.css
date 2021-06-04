@@ -1,0 +1,58 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  letter-spacing: 1.2px;
+  top: 12vh;
+  width: 50rem;
+  height: 35rem;
+  margin: auto;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.project h2 {
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.info {
+  border-bottom: 2px solid #eee;
+}
+
+.info h4{
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+
+.protocol {
+  margin-top: 1rem;
+  padding: 2.5rem;
+  background-color: #40a9ff;
+  border-radius: 5px;
+}
+
+.protocol h1 {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.protocol section {
+  margin: 1.5rem 0;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 0;
+}
+
+
+

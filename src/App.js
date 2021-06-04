@@ -1,10 +1,14 @@
-import './App.css';
-
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-import LoginForm from './components/UI/Login/LoginForm';
-import ResetForm from './components/UI/Login/ResetForm';
+import './App.css';
+
+import LoginForm from './components/Login/LoginForm';
+import ResetForm from './components/Login/ResetForm';
 import Panel from './components/ProjectPanel/Panel/Panel';
+import Settings from './components/ProjectPanel/Panel/Settings';
+import NewProject from './components/ProjectPanel/Panel/NewProject';
+import MemberList from './components/ProjectPanel/Members/MemberList';
+
 
 function App() {
   return (
@@ -19,6 +23,9 @@ function App() {
         <Route path='/home'>
           <Panel />
         </Route>
+        <Route path='/profile'>
+          <Settings />
+        </Route>
         <Route path='/about'>
           <Panel />
         </Route>
@@ -27,6 +34,12 @@ function App() {
         </Route>
         <Route path='/help'>
           <Panel />
+        </Route>
+        <Route path='/new-project'>
+          <NewProject />
+        </Route>
+        <Route path='/members'>
+          <MemberList />
         </Route>
       </Switch>
     </BrowserRouter>

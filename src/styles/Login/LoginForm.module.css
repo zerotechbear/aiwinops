@@ -1,0 +1,105 @@
+.login {
+  display: block;
+  flex-direction: row;
+  width: 50rem;
+  max-width: 80%;
+  margin: 8rem auto;
+  position: relative;
+}
+
+.logo {
+  width: 8rem;
+  height: 10rem;
+  position: absolute;
+  top: calc(50% - 5rem);
+  left: calc(25% - 5rem);
+  background-image: url('../../assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: initial;
+}
+
+.form {
+  background-color: #fff;
+  width: 45%;
+  left: 50%;
+}
+
+.form h3 {
+  font-size: 1.25rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.email {
+  margin-bottom: 1rem;
+}
+
+.form__field input {
+  font: inherit;
+  font-weight: 600;
+  line-height: 20px;
+  margin: auto;
+}
+
+.form__check {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.form__check label {
+  margin-left: 10px;
+}
+
+.form__check button {
+  display: flex;
+  font-size: 12px;
+  text-align: right;
+  margin-left: 3rem;
+  width: 10rem;
+  border: inherit;
+  background-color: inherit;
+  color: #03a9f4;
+  text-align: right;
+}
+
+.form__help button {
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+  width: 10rem;
+  border: inherit;
+  background-color: inherit;
+  color: #03a9f4;
+  font-size: 12px;
+}
+
+.form__submit button {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #388e3c;
+}
+
+button {
+  font: inherit;
+  color: #fff;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  padding: 0.5rem 2rem;
+  border: 1px solid #388e3c;
+  border-radius: 5px;
+}
+
+button:hover,
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+  outline: none;
+}

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Input, Avatar, Layout } from 'antd';
+import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 import 'antd/dist/antd.css';
@@ -24,11 +24,26 @@ const navLinks = [
   },
 ];
 
+const menu = (
+  <Menu>
+    {/* <Menu.Item>
+      <a rel="noopener noreferrer" href="#">
+        Setting
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a rel="noopener noreferrer" href="#">
+        Logout
+      </a>
+    </Menu.Item> */}
+  </Menu>
+)
+
 const NavHeader = () => {
   const { Header } = Layout;
   const { Search } = Input;
 
-  // 搜尋專案的函數
+  // TODO: 搜尋專案的函數
   const searchProjectHandler = (value) => {
     console.log(value);
   };
@@ -54,7 +69,9 @@ const NavHeader = () => {
               </li>
             ))}
             <span className={classes.avatar}>
-              <Avatar size={50} icon={<UserOutlined />} />
+              <Dropdown overlay={menu} placement='bottomRight' arrow>
+                <Avatar size={50} icon={<UserOutlined />}></Avatar>
+              </Dropdown>
             </span>
           </ul>
         </div>

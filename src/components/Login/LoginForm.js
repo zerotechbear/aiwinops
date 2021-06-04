@@ -1,9 +1,12 @@
 import { useState, useRef, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
-import classes from '../../../styles/UI/Login/LoginForm.module.css';
 
-import Card from '../Layout/Card';
-import LoadingSpinner from '../Layout/LoadingSpinner';
+import {  Input, Checkbox } from 'antd';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import classes from '../../styles/Login/LoginForm.module.css';
+
+import Card from '../UI/Layout/Card';
+import LoadingSpinner from '../UI/Layout/LoadingSpinner';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,22 +17,21 @@ const LoginForm = () => {
 
   const history = useHistory();
 
+  // 顯示/不顯示密碼
   const showPasswordHandler = () => {
     setShowPassword((showPassword) => !showPassword);
   };
 
+  // 提交表單
   const submitLoginHandler = (event) => {
     event.preventDefault();
 
-    // const emailInput = emailRef.current.value;
-    // const passwordInput = passwordRef.current.value;
+    const emailInput = emailRef.current.value;
+    const passwordInput = passwordRef.current.value;
 
-    setIsLoading(true);
-    // Authenticate User ...
+    // 驗證使用者登入
 
     history.push('/home');
-
-    setIsLoading(false);
   };
 
   const resetFormHandler = () => {
@@ -38,55 +40,54 @@ const LoginForm = () => {
 
   return (
     <Fragment>
-      <span className={classes.logo} />
       <section className={classes.login}>
         <Card>
+          <span className={classes.logo} />
           <form className={classes.form} onSubmit={submitLoginHandler}>
-            <div className={classes.form__control}>
-              <h3>Log in With Email Account</h3>
-              <label htmlFor='email'>Email</label>
-              <input
+            <div className={classes.form__field}>
+              <h3>Member Login</h3>
+              <Input
+                className={classes.email}
                 type='text'
-                id='email'
-                placeholder='name@domain.com'
+                prefix={<MailOutlined />}
+                placeholder='Email@domain.com'
                 ref={emailRef}
                 required
               />
-              <label htmlFor='password'>Password</label>
               {showPassword ? (
-                <input
+                <Input
                   type='text'
-                  id='text'
-                  placeholder='password'
+                  prefix={<LockOutlined />}
+                  placeholder='Password'
                   ref={passwordRef}
                   required
                 />
               ) : (
-                <input
+                <Input
                   type='password'
-                  id='password'
-                  placeholder='password'
+                  prefix={<LockOutlined />}
+                  placeholder='Password'
                   ref={passwordRef}
                   required
                 />
               )}
             </div>
             <div className={classes.form__check}>
-              <input
+              <Checkbox
                 type='checkbox'
                 id='checkpsd'
                 onClick={showPasswordHandler}
               />
               <label htmlFor='checkpsd'>Show Password</label>
+              <button type='button' onClick={resetFormHandler}>
+                Forget Password?
+              </button>
             </div>
             <div className={classes.form__submit}>
-              {!isLoading && <button type='submit'>Login</button>}
+              {!isLoading && <button type='submit'>LOGIN</button>}
               {isLoading && <LoadingSpinner />}
             </div>
             <div className={classes.form__help}>
-              <button type='button' onClick={resetFormHandler}>
-                Forget Your Password?
-              </button>
               <button type='button'>Help</button>
             </div>
           </form>
