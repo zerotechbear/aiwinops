@@ -8,7 +8,7 @@ const PanelLayout = (props) => {
   return (
     <Layout>
       <Header />
-      <Layout style={{ position: 'fixed', width: '100%', top: '5rem' }}>
+      <Layout style={{ position: 'fixed', width: '100%', height: '100%', top: '5rem' }}>
         <Sidebar />
         {props.children}
       </Layout>

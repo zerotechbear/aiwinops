@@ -2,12 +2,7 @@ import { useState, useRef, Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { Input } from 'antd';
-import {
-  MailOutlined,
-  LockOutlined,
-  EyeTwoTone,
-  EyeInvisibleOutlined,
-} from '@ant-design/icons';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import classes from '../../styles/Login/LoginForm.module.css';
 
 import Card from '../UI/Layout/Card';
@@ -24,7 +19,6 @@ const LoginForm = (props) => {
   // TODO: 驗證USER登入
   const submitLoginHandler = (event) => {
     event.preventDefault();
-
 
     history.replace('/home');
   };
@@ -48,9 +42,6 @@ const LoginForm = (props) => {
               <Input.Password
                 placeholder='Password'
                 prefix={<LockOutlined />}
-                iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                }
               />
             </div>
             <div className={classes.form__submit}>

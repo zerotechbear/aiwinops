@@ -23,6 +23,9 @@ function App() {
         <Route path='/home'>
           <ProjectPage />
         </Route>
+        <Route path='/new-project'>
+          <NewProject />
+        </Route>
         <Route path='/members'>
           <MemberPanel />
         </Route>
@@ -47,7 +50,5 @@ export default App;
         <Route path='/help'>
           <ProjectPage />
         </Route>
-        <Route path='/new-project'>
-          <NewProject />
-        </Route>
+        
          */

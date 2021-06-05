@@ -41,7 +41,7 @@ const TABLE_COLUMN = [
 const ProjectList = (props) => {
   const [projectData, setProjectData] = useState();
 
-  // TODO: 抓取使用者專案的資料
+  // TODO: 抓取使用者專案的資料 -> GET/ProjectData
   const fetchProjectData = useCallback(() => {
     fetch('https://aiwinops-default-rtdb.firebaseio.com/projects.json', {
       method: 'GET',
@@ -78,7 +78,7 @@ const ProjectList = (props) => {
   return (
     <div className={classes.projects}>
       <div>
-        <Table columns={TABLE_COLUMN} dataSource={projectData} />
+        <Table scroll={{ x: '1000', y: '500'}} pagination={false} columns={TABLE_COLUMN} dataSource={projectData} />
       </div>
     </div>
   );

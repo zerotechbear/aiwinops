@@ -11,11 +11,18 @@ const TABLE_COLUMN = [
     title: '名稱',
     key: 'name',
     dataIndex: 'name',
+    width: '20%'
   },
   {
     title: '權限',
     key: 'level',
-    dataIndex: 'level'
+    dataIndex: 'level',
+    width: '20%'
+  },
+  {
+    title: '信箱',
+    key: 'email',
+    dataIndex: 'email'
   },
   {
     title: '狀態',
@@ -24,9 +31,14 @@ const TABLE_COLUMN = [
   }
 ];
 
+const paginationProps = {
+
+}
+
 const MemberList = () => {
   const [members, setMembers] = useState();
 
+  // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {
     fetch(TEST_URL, {
       method: 'GET',
@@ -39,10 +51,11 @@ const MemberList = () => {
         const memberData = [];
         for (const key in data) {
           memberData.push({
-            id: key,
-            name: data[key].name,
+            id: data[key].name,
+            name: data[key].username,
             level: data[key].level,
             status: data[key].status,
+            email: data[key].email,
           });
         }
         setMembers(memberData);
@@ -59,7 +72,12 @@ const MemberList = () => {
   return (
     <div className={classes.members}>
       <div>
-        <Table columns={TABLE_COLUMN} dataSource={members} />
+        <Table
+          scroll={{ x: 1000, y: 500 }}
+          pagination={false}
+          columns={TABLE_COLUMN}
+          dataSource={members}
+        />
       </div>
     </div>
   );
