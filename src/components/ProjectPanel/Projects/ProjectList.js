@@ -4,8 +4,6 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import classes from '../../../styles/ProjectPanel/Projects/ProjectList.module.css';
 
-import LoadingSpinner from '../../UI/Layout/LoadingSpinner';
-
 const TABLE_COLUMN = [
   {
     title: '專案名稱',
@@ -36,17 +34,15 @@ const TABLE_COLUMN = [
     title: '其他操作',
     key: 'action',
     dataIndex: 'action',
-    type: 'Action'
+    type: 'Action',
   },
 ];
 
 const ProjectList = (props) => {
   const [projectData, setProjectData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
 
   // TODO: 抓取使用者專案的資料
   const fetchProjectData = useCallback(() => {
-    setIsLoading(true);
     fetch('https://aiwinops-default-rtdb.firebaseio.com/projects.json', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -73,8 +69,7 @@ const ProjectList = (props) => {
       .catch((error) => {
         throw new Error(error);
       });
-      setIsLoading(false);
-  }, [])
+  }, []);
 
   useEffect(() => {
     fetchProjectData();
@@ -83,7 +78,7 @@ const ProjectList = (props) => {
   return (
     <div className={classes.projects}>
       <div>
-        {!isLoading ? <Table columns={TABLE_COLUMN} dataSource={projectData} /> : <LoadingSpinner /> }
+        <Table columns={TABLE_COLUMN} dataSource={projectData} />
       </div>
     </div>
   );

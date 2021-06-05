@@ -27,6 +27,7 @@
 
 .form h3 {
   font-size: 1.25rem;
+  font-weight: 700;
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 2.5rem;
@@ -41,48 +42,6 @@
   font-weight: 600;
   line-height: 20px;
   margin: auto;
-}
-
-.form__check {
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  margin-top: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.form__check label {
-  margin-left: 10px;
-}
-
-.form__check button {
-  display: flex;
-  font-size: 12px;
-  text-align: right;
-  margin-left: 3rem;
-  width: 10rem;
-  border: inherit;
-  background-color: inherit;
-  color: #03a9f4;
-  text-align: right;
-}
-
-.form__help button {
-  display: block;
-  margin: auto;
-  margin-top: 5px;
-  margin-bottom: 1rem;
-  width: 10rem;
-  border: inherit;
-  background-color: inherit;
-  color: #03a9f4;
-  font-size: 12px;
-}
-
-.form__submit button {
-  width: 100%;
-  color: rgba(255, 255, 255, 0.9);
-  background-color: #388e3c;
 }
 
 button {
@@ -102,4 +61,31 @@ button:active {
 
 button:focus {
   outline: none;
+}
+
+.form__submit button {
+  font-weight: 500;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #388e3c;
+  box-shadow: 0 1px 2px #388e3c;
+  margin-top: 5rem;
+}
+
+.form__help {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.form__help button {
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+  padding: 5px 0;
+  width: 10rem;
+  border: inherit;
+  background-color: inherit;
+  color: #03a9f4;
+  font-size: 12px;
 }

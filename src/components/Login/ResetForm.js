@@ -11,6 +11,7 @@ const ResetForm = (props) => {
   const resetRef = useRef();
   const history = useHistory();
 
+  // TODO: 發送重設密碼信件給已註冊的使用者
   const submitResetHandler = (event) => {
     event.preventDefault();
 

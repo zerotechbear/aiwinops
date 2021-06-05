@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { Button, Input } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 import { CirclePicker } from 'react-color';
-import classes from '../../../styles/ProjectPanel/Panel/NewProject.module.css';
+import classes from '../../../styles/ProjectPanel/Projects/NewProject.module.css';
 
-import NavHeader from './NavHeader';
+import NavHeader from '../../UI/Layout/Header';
 
 const NewProject = () => {
   const { TextArea } = Input;

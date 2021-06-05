@@ -1,45 +1,33 @@
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-import './App.css';
+import LoginPage from './pages/LoginPage';
+import ProjectPage from './pages/ProjectPage';
 
-import LoginForm from './components/Login/LoginForm';
 import ResetForm from './components/Login/ResetForm';
-import Panel from './components/ProjectPanel/Panel/Panel';
-import Settings from './components/ProjectPanel/Panel/Settings';
-import NewProject from './components/ProjectPanel/Panel/NewProject';
-import MemberList from './components/ProjectPanel/Members/MemberList';
+import NewProject from './components/ProjectPanel/Projects/NewProject';
+import MemberPanel from './components/ProjectPanel/Members/MemberPanel';
+import NewMember from './components/ProjectPanel/Members/NewMember';
 
 
 function App() {
+  console.log(process.env.PUBLIC_URL);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/' exact>
-          <LoginForm />
+          <LoginPage />
         </Route>
         <Route path='/reset'>
           <ResetForm />
         </Route>
         <Route path='/home'>
-          <Panel />
-        </Route>
-        <Route path='/profile'>
-          <Settings />
-        </Route>
-        <Route path='/about'>
-          <Panel />
-        </Route>
-        <Route path='/tutorials'>
-          <Panel />
-        </Route>
-        <Route path='/help'>
-          <Panel />
-        </Route>
-        <Route path='/new-project'>
-          <NewProject />
+          <ProjectPage />
         </Route>
         <Route path='/members'>
-          <MemberList />
+          <MemberPanel />
+        </Route>
+        <Route path='/new-member'>
+          <NewMember />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -47,3 +35,19 @@ function App() {
 }
 
 export default App;
+
+/* 
+        <Route path='/profile'></Route>
+        <Route path='/about'>
+          <ProjectPage />
+        </Route>
+        <Route path='/tutorials'>
+          <ProjectPage />
+        </Route>
+        <Route path='/help'>
+          <ProjectPage />
+        </Route>
+        <Route path='/new-project'>
+          <NewProject />
+        </Route>
+         */

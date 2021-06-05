@@ -2,8 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-import 'antd/dist/antd.css';
-import classes from '../../../styles/ProjectPanel/Panel/NavHeader.module.css';
+import classes from '../../../styles/UI/Layout/Header.module.css';
 
 const navLinks = [
   {
@@ -81,45 +80,4 @@ const NavHeader = () => {
 };
 
 export default NavHeader;
-
-// const NavHeader = (props) => {
-//   // const [menuActive, setMenuActive] = useState(false);
-//   const { Search } = Input;
-
-//   const searchProjectHandler = (value) => {
-//     console.log(value);
-//   };
-//   return (
-//     <header className={classes.header}>
-//       <span className={classes.logo}>
-//         <NavLink to='/home'>AIWin</NavLink>
-//       </span>
-
-// <nav className={classes.nav}>
-//   <div className={classes.menu}>
-//     <ul>
-//       <li>
-//         <Search
-//           placeholder='Search Project'
-//           onSearch={searchProjectHandler}
-//         />
-//       </li>
-//       {navLinks.map((link, index) => (
-//         <li key={index}>
-//           <NavLink
-//             to={link.path}
-//             activeClassName={classes.active}>
-//             {link.title}
-//           </NavLink>
-//         </li>
-//       ))}
-//       <span className={classes.avatar}>
-//         <Avatar size={50} icon={<UserOutlined />} />
-//       </span>
-//     </ul>
-//   </div>
-// </nav>
-//     </header>
-//   );
-// };
 

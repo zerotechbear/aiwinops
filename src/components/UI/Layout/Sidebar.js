@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 
 import 'antd/dist/antd.css';
-import classes from '../../../styles/ProjectPanel/Panel/NavLeft.module.css';
+import classes from '../../../styles/UI/Layout/Sidebar.module.css';
 
 
 const NavLeft = () => {
@@ -34,7 +34,7 @@ const NavLeft = () => {
         defaultSelectedKeys={['1']}
         style={{ height: '100%', borderRight: 0 }}>
         <Menu.Item key='1' icon={<PieChartOutlined />}>
-          Project
+          <Link to='/home'>Project</Link>
         </Menu.Item>
         <Menu.Item key='2' icon={<DesktopOutlined />}>
           Dashboard
@@ -51,14 +51,3 @@ const NavLeft = () => {
 };
 
 export default NavLeft;
-
-/* <Menu
-        
-        defaultSelectedKeys={['1']}
-        mode='inline'
-        theme='white'
-        inlineCollapsed={false}>
-        
-        {project.isSelected  && <Menu.Item key='5'>Report</Menu.Item>}
-      </Menu>
-    </div> */
