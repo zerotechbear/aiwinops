@@ -1,0 +1,16 @@
+.message {
+  display: inline-block;
+  position: absolute;
+  right: -15rem;
+  width: 10rem;
+  height: 4rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.message h3, p {
+  text-align: center;
+  color: #ff2000;
+}
+
+

@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Table } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import classes from '../../../styles/ProjectPanel/Projects/ProjectList.module.css';
 

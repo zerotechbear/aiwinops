@@ -100,7 +100,12 @@ const LoginForm = (props) => {
                 </Button>
               </div>
               <div className={classes.help}>
-                <Button type='default'>Help</Button>
+                <a
+                  href='https://www.zerodimension.com.tw/default.aspx#contact'
+                  target='_blank'
+                  rel='noreferrer'>
+                  <Button type='default'>Help</Button>
+                </a>
                 <Button type='default'>
                   <Link to='/reset'>Forget Password?</Link>
                 </Button>

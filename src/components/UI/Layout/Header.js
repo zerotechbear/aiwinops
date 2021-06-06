@@ -26,18 +26,15 @@ const navLinks = [
 const menu = (
   <Menu>
     <Menu.Item>
-      <a rel="noopener noreferrer" href="#">
-        Setting
-      </a>
+      {/* 導向個人資訊頁面 -> /uid/settings */}
+      <Link to='/settings'>Setting</Link>
     </Menu.Item>
     <Menu.Item>
       {/* 確認登出後刪除Token資訊 */}
-      <Link to='/'>
-        Logout
-      </Link>
+      <Link to='/'>Logout</Link>
     </Menu.Item>
   </Menu>
-)
+);
 
 const NavHeader = () => {
   const { Header } = Layout;
@@ -81,4 +78,3 @@ const NavHeader = () => {
 };
 
 export default NavHeader;
-

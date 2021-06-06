@@ -164,59 +164,6 @@ const NewMember = () => {
       </section>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <NavHeader />
-  //     <form class={classes.form} onSubmit={newMemberHandler}>
-  //       <h2>New Member</h2>
-  //       <div className={classes.control}>
-  //         <label htmlFor='username'>Username</label>
-  //         <Input
-  //           prefix={<UserOutlined />}
-  //           placeholder='Enter username'
-  //           id='username'
-  //           allowClear
-  //           required
-  //         />
-  //       </div>
-  //       <div className={classes.control}>
-  //         <label htmlFor='email'>Email</label>
-  //         <Input
-  //           prefix={<MailOutlined />}
-  //           placeholder='Enter email'
-  //           type='email'
-  //           id='email'
-  //           allowClear
-  //           required
-  //         />
-  //       </div>
-  //       <div className={classes.control}>
-  //         <label htmlFor='password'>Password</label>
-  //         <Input
-  //           prefix={<LockOutlined />}
-  //           placeholder='Enter password'
-  //           id='password'
-  //           allowClear
-  //           required
-  //         />
-  //       </div>
-  //       <div className={classes.control}>
-  //         <label htmlFor='confirm'>Confirm Password</label>
-  //         <Input
-  //           prefix={<LockOutlined />}
-  //           placeholder='Confirm password'
-  //           id='confirm'
-  //           allowClear
-  //           required
-  //         />
-  //       </div>
-  //       <div className={classes.action}>
-  //         <button type='submit'>新增會員</button>
-  //       </div>
-  //     </form>
-  //   </div>
-  // );
 };
 
 export default NewMember;

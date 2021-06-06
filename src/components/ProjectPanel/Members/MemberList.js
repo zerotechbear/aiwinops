@@ -4,7 +4,7 @@ import { Table } from 'antd';
 
 import classes from '../../../styles/ProjectPanel/Member/MemberList.module.css';
 
-const TEST_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
+const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
 const TABLE_COLUMN = [
   {
@@ -31,16 +31,13 @@ const TABLE_COLUMN = [
   }
 ];
 
-const paginationProps = {
-
-}
 
 const MemberList = () => {
   const [members, setMembers] = useState();
 
   // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {
-    fetch(TEST_URL, {
+    fetch(MEMBER_URL, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
