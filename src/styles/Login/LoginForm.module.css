@@ -25,7 +25,7 @@
   left: 50%;
 }
 
-.form h3 {
+.form h2 {
   font-size: 1.25rem;
   font-weight: 700;
   text-align: center;
@@ -33,51 +33,20 @@
   margin-bottom: 2.5rem;
 }
 
-.email {
-  margin-bottom: 1rem;
-}
-
-.form__field input {
-  font: inherit;
-  font-weight: 600;
-  line-height: 20px;
-  margin: auto;
-}
-
-button {
-  font: inherit;
-  color: #fff;
-  cursor: pointer;
-  margin: 0.5rem 0;
-  padding: 0.5rem 2rem;
-  border: 1px solid #388e3c;
-  border-radius: 5px;
-}
-
-button:hover,
-button:active {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-button:focus {
-  outline: none;
-}
-
-.form__submit button {
+.submit button {
   font-weight: 500;
   width: 100%;
   color: rgba(255, 255, 255, 0.9);
-  background-color: #388e3c;
-  box-shadow: 0 1px 2px #388e3c;
-  margin-top: 5rem;
+  border-radius: 5px;
+  margin-top: 3rem;
 }
 
-.form__help {
+.help {
   display: flex;
   margin-top: 1rem;
 }
 
-.form__help button {
+.help button {
   display: block;
   margin: auto;
   margin-top: 5px;
@@ -88,4 +57,22 @@ button:focus {
   background-color: inherit;
   color: #03a9f4;
   font-size: 12px;
+}
+
+button {
+  font: inherit;
+  color: #fff;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}
+
+button:hover,
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+  outline: none;
 }

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -25,16 +25,17 @@ const navLinks = [
 
 const menu = (
   <Menu>
-    {/* <Menu.Item>
+    <Menu.Item>
       <a rel="noopener noreferrer" href="#">
         Setting
       </a>
     </Menu.Item>
     <Menu.Item>
-      <a rel="noopener noreferrer" href="#">
+      {/* 確認登出後刪除Token資訊 */}
+      <Link to='/'>
         Logout
-      </a>
-    </Menu.Item> */}
+      </Link>
+    </Menu.Item>
   </Menu>
 )
 
@@ -42,7 +43,7 @@ const NavHeader = () => {
   const { Header } = Layout;
   const { Search } = Input;
 
-  // TODO: 搜尋專案的函數
+  // 搜尋專案 -> 可能透過Antd Table Column Filter
   const searchProjectHandler = (value) => {
     console.log(value);
   };

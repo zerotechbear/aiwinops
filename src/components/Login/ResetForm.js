@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 import classes from '../../styles/Login/ResetForm.module.css';
 
@@ -38,7 +38,7 @@ const ResetForm = (props) => {
             />
           </div>
           <div className={classes.form__submit}>
-            <button type='submit'>Send</button>
+            <Button type='primary'>Send</Button>
           </div>
         </form>
       </Card>
