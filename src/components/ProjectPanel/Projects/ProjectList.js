@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Table } from 'antd';
 
-import classes from '../../../styles/ProjectPanel/Projects/ProjectList.module.css';
-
 const TABLE_COLUMN = [
   {
     title: '專案名稱',
@@ -42,10 +40,7 @@ const ProjectList = (props) => {
 
   // TODO: 抓取使用者專案的資料 -> GET/ProjectData
   const fetchProjectData = useCallback(() => {
-    fetch('https://aiwinops-default-rtdb.firebaseio.com/projects.json', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
+    fetch('https://aiwinops-default-rtdb.firebaseio.com/projects.json')
       .then((response) => {
         return response.json();
       })
@@ -75,10 +70,13 @@ const ProjectList = (props) => {
   }, [fetchProjectData]);
 
   return (
-    <div className={classes.projects}>
-      <div>
-        <Table scroll={{ x: '1000', y: '500'}} pagination={false} columns={TABLE_COLUMN} dataSource={projectData} />
-      </div>
+    <div>
+      <Table
+        scroll={{ x: '1000', y: '500' }}
+        pagination={false}
+        columns={TABLE_COLUMN}
+        dataSource={projectData}
+      />
     </div>
   );
 };

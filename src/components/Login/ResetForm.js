@@ -8,6 +8,7 @@ import classes from '../../styles/Login/ResetForm.module.css';
 import Card from '../UI/Layout/Card';
 import Message from '../UI/Modal/Message';
 
+// Firebase Authentication模擬登出API串接 
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FIREBASE_KEY}`;
 
@@ -15,11 +16,11 @@ const ResetForm = (props) => {
   const [form] = Form.useForm();
   const history = useHistory();
 
+  const [isReset, setIsReset] = useState(false);
   const [isExist, setIsExist] = useState(true);
 
-  // TODO: 發送重設密碼信件給已註冊的使用者
-  const submitResetHandler = (values) => {
-    console.log(values);
+  // TODO: 驗證USER登入 -> POST/auth/reset -> 發送重設密碼信件給已註冊的使用者
+  const resetPasswordHandler = (values) => {
     fetch(RESET_API, {
       method: 'POST',
       body: JSON.stringify({
@@ -32,8 +33,10 @@ const ResetForm = (props) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Send');
-          history.push('/');
+          setIsReset(true);
+          setTimeout(() => {   
+            history.push('/');
+          }, 2000);
         } else {
           setIsExist(false);
         }
@@ -49,13 +52,14 @@ const ResetForm = (props) => {
 
   return (
     <section className={classes.reset}>
-      {!isExist && <Message>Email does not exist!</Message> }
+      {!isExist && <Message>Email does not exist!</Message>}
+      {isReset && <Message>Reset email is sent!</Message>}
       <Card>
         <section className={classes.form}>
           <Form
             form={form}
             onValuesChange={emailEnter}
-            onFinish={submitResetHandler}>
+            onFinish={resetPasswordHandler}>
             <h3>Reset Password</h3>
             <Form.Item
               name='email'
@@ -78,7 +82,7 @@ const ResetForm = (props) => {
               ]}>
               <Input prefix={<MailOutlined />} placeholder='name@domain.com' />
             </Form.Item>
-            <div className={classes.form__submit}>
+            <div className={classes.send}>
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
                   Send

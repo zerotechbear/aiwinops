@@ -7,7 +7,6 @@ import classes from '../../../styles/ProjectPanel/Projects/NewProject.module.css
 
 import NavHeader from '../../UI/Layout/Header';
 
-
 const PROJECT_URL = 'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
 
 const NewProject = () => {
@@ -22,13 +21,13 @@ const NewProject = () => {
   };
 
   // TODO: 將新專案新增至資料庫 /PUSH/New-Project
-  const submitNewProject = (values) => {
-    
+  const registerNewProject = (values) => {
     fetch(PROJECT_URL, {
       method: 'POST',
       body: JSON.stringify({
         build_time: new Date().toISOString().toString(),
         name: values.project_name,
+        manager: values.project_manager,
         color: values.project_color.hex,
         description: values.project_description,
       }),
@@ -53,7 +52,7 @@ const NewProject = () => {
         <Form
           form={form}
           name='project'
-          onFinish={submitNewProject}
+          onFinish={registerNewProject}
           scrollToFirstError>
           <div className={classes.info}>
             <h4>專案名稱</h4>
@@ -66,6 +65,17 @@ const NewProject = () => {
                 },
               ]}>
               <Input placeholder='Project Name' allowClear />
+            </Form.Item>
+            <h4>管理者</h4>
+            <Form.Item
+              name='project_manager'
+              rules={[
+                {
+                  required: true,
+                  message: 'Project manager should be provided!',
+                },
+              ]}>
+              <Input placeholder='Project Manager' allowClear />
             </Form.Item>
             <h4>專案顏色</h4>
             <Form.Item

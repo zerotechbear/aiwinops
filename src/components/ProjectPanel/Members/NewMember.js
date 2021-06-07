@@ -53,7 +53,7 @@ const NewMember = () => {
       body: JSON.stringify({
         email: values.email,
         password: values.password,
-        name: values.username,
+        displayName: values.username,
         returnSecureToken: true,
       }),
       headers: { 'Content-Type': 'application/json' },

@@ -1,16 +1,24 @@
 .message {
   display: inline-block;
   position: absolute;
-  right: -15rem;
   width: 10rem;
   height: 4rem;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+  right: -15rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
   z-index: 2;
+  transition-duration: 1s;
 }
 
 .message h3, p {
+  font-weight: 600;
   text-align: center;
   color: #ff2000;
+}
+
+.message:hover {
+  right: -20rem;
+  
 }
 
 
