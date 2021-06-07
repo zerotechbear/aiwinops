@@ -9,7 +9,7 @@ import Card from '../UI/Layout/Card';
 import Error from '../UI/Modal/Error';
 import AuthContext from '../../store/auth-context';
 
-// Firebase Authentication模擬登入API串接
+// 目前使用 Firebase Authentication模擬登入
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const SIGN_IN_API = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_KEY}`;
 
@@ -22,7 +22,6 @@ const LoginForm = (props) => {
 
   // TODO: 驗證USER登入 -> POST/auth/login
   const loginAuthHandler = (values) => {
-    // console.log('Login Auth: ', values);
     fetch(SIGN_IN_API, {
       method: 'POST',
       body: JSON.stringify({
@@ -45,8 +44,8 @@ const LoginForm = (props) => {
         authCtx.login(data.idToken);
         history.replace('/home');
       })
-      .catch((error) => {
-        throw new Error(error);
+      .catch(() => {
+        setIsLoginFail(true);
       });
   };
 

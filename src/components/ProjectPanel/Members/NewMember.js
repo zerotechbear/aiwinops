@@ -5,9 +5,11 @@ import classes from '../../../styles/ProjectPanel/Member/NewMember.module.css';
 
 import NavHeader from '../../UI/Layout/Header';
 
+// 目前使用 Firebase Realtime Database 模擬會員資料
+const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
-const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
-const SIGN_UP_API = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_KEY}`;
+// const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
+// const SIGN_UP_API = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_KEY}`;
 
 const formItemLayout = {
   labelCol: {
@@ -48,20 +50,25 @@ const NewMember = () => {
   // TODO: 新增會員資料 -> POST/MemberData
   const registerNewMember = (values) => {
     console.log('Received values of form: ', values);
-    fetch(SIGN_UP_API, {
+    fetch(MEMBER_URL, {
       method: 'POST',
       body: JSON.stringify({
         email: values.email,
         password: values.password,
-        displayName: values.username,
+        username: values.username,
+        level: 'Annotator',
+        status: 'Active',
+        agreement: values.agreement,
         returnSecureToken: true,
       }),
       headers: { 'Content-Type': 'application/json' },
-    }).then(response => {
-      return response.json();
-    }).catch((error) => {
-      throw new Error(error);
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
     history.replace('/members');
   };
 

@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Table } from 'antd';
 
+const PROJECT_URL =
+  'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
+
 const TABLE_COLUMN = [
   {
     title: '專案名稱',
@@ -38,9 +41,9 @@ const TABLE_COLUMN = [
 const ProjectList = (props) => {
   const [projectData, setProjectData] = useState();
 
-  // TODO: 抓取使用者專案的資料 -> GET/ProjectData
+  // 抓取使用者專案的資料 -> GET/ProjectData
   const fetchProjectData = useCallback(() => {
-    fetch('https://aiwinops-default-rtdb.firebaseio.com/projects.json')
+    fetch(PROJECT_URL)
       .then((response) => {
         return response.json();
       })

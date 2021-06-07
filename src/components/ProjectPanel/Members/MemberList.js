@@ -4,7 +4,7 @@ import { Table } from 'antd';
 
 import classes from '../../../styles/ProjectPanel/Member/MemberList.module.css';
 
-// 會員資料API
+// 目前使用 Firebase Realtime Database 模擬會員資料
 const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
 // Firebase Authentication模擬GET會員API串接
@@ -62,10 +62,14 @@ const MemberList = () => {
       .catch((error) => {
         throw new Error(error);
       });
-  }, []);
+  }, [setMembers]);
 
   useEffect(() => {
     fetchMemberData();
+
+    return () => {
+      fetchMemberData();
+    }
   }, [fetchMemberData]);
 
   return (

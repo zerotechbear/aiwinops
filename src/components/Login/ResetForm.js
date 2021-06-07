@@ -8,7 +8,7 @@ import classes from '../../styles/Login/ResetForm.module.css';
 import Card from '../UI/Layout/Card';
 import Message from '../UI/Modal/Message';
 
-// Firebase Authentication模擬登出API串接 
+// 目前使用 Firebase Authentication模擬登出
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FIREBASE_KEY}`;
 

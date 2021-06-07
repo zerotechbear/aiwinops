@@ -20,7 +20,7 @@ const NewProject = () => {
     setProjectColor(color.hex);
   };
 
-  // TODO: 將新專案新增至資料庫 /PUSH/New-Project
+  // 將新專案新增至資料庫 /PUSH/New-Project
   const registerNewProject = (values) => {
     fetch(PROJECT_URL, {
       method: 'POST',

@@ -7,6 +7,7 @@ import ResetForm from './components/Login/ResetForm';
 import NewProject from './components/ProjectPanel/Projects/NewProject';
 import MemberPanel from './components/ProjectPanel/Members/MemberPanel';
 import NewMember from './components/ProjectPanel/Members/NewMember';
+import Settings from './components/ProjectPanel/Members/Settings';
 
 
 
@@ -33,15 +34,9 @@ function App() {
         <Route path='/new-member'>
           <NewMember />
         </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-
-/* 
-        <Route path='/profile'></Route>
+        <Route path='/settings'>
+          <Settings />
+        </Route>
         <Route path='/about'>
           <ProjectPage />
         </Route>
@@ -51,5 +46,15 @@ export default App;
         <Route path='/help'>
           <ProjectPage />
         </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+/* 
+        <Route path='/profile'></Route>
+        
         
          */
