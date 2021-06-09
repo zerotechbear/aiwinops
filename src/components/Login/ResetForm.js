@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { Form, Input, Button } from 'antd';
-import { MailOutlined } from '@ant-design/icons';
+import { MailOutlined, ArrowLeftOutlined} from '@ant-design/icons';
 import classes from '../../styles/Login/ResetForm.module.css';
 
 import Card from '../UI/Layout/Card';
@@ -83,6 +83,14 @@ const ResetForm = (props) => {
               <Input prefix={<MailOutlined />} placeholder='name@domain.com' />
             </Form.Item>
             <div className={classes.send}>
+              <Form.Item>
+                <Link to='/'>
+                  <Button type='default' style={{ color: '#000' }}>
+                    <ArrowLeftOutlined />
+                    LOGIN
+                  </Button>
+                </Link>
+              </Form.Item>
               <Form.Item>
                 <Button type='primary' htmlType='submit'>
                   Send

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Table } from 'antd';
+import { Table, Space } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const PROJECT_URL =
   'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
@@ -32,9 +33,17 @@ const TABLE_COLUMN = [
   },
   {
     title: '其他操作',
-    key: 'action',
-    dataIndex: 'action',
-    type: 'Action',
+    key: 'editable',
+    dataIndex: 'editable',
+    render: (editable) => {
+      return (
+        // 連結Icon到各自專案的編輯畫面
+        <Space>
+          {editable && <EditOutlined style={{ fontSize: '150%' }} />}{' '}
+          <DeleteOutlined style={{ fontSize: '150%' }} />
+        </Space>
+      );
+    },
   },
 ];
 
@@ -58,10 +67,10 @@ const ProjectList = (props) => {
             build_time: data[key].build_time,
             modify_time: data[key].modify_time,
             editable: data[key].editable,
-            modifiable: data[key].modifiable,
           });
         }
         setProjectData(storeData);
+        console.log(projectData);
       })
       .catch((error) => {
         throw new Error(error);

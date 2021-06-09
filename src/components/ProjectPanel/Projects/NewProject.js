@@ -30,6 +30,7 @@ const NewProject = () => {
         manager: values.project_manager,
         color: values.project_color.hex,
         description: values.project_description,
+        editable:　true,
       }),
       headers: { 'Content-Type': 'application/json'}
     }).then(response => {

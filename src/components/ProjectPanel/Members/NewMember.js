@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-import { Form, Input, Checkbox, Button } from 'antd';
+import { Form, Input, Checkbox, Button, Select } from 'antd';
 import classes from '../../../styles/ProjectPanel/Member/NewMember.module.css';
 
 import NavHeader from '../../UI/Layout/Header';
@@ -47,6 +47,8 @@ const NewMember = () => {
   const [form] = Form.useForm();
   const history = useHistory();
 
+  const { Option } = Select;
+
   // TODO: 新增會員資料 -> POST/MemberData
   const registerNewMember = (values) => {
     console.log('Received values of form: ', values);
@@ -56,8 +58,8 @@ const NewMember = () => {
         email: values.email,
         password: values.password,
         username: values.username,
-        level: 'Annotator',
-        status: 'Active',
+        level: values.level,
+        status: true,
         agreement: values.agreement,
         returnSecureToken: true,
       }),
@@ -142,7 +144,21 @@ const NewMember = () => {
             ]}>
             <Input.Password />
           </Form.Item>
-
+          <Form.Item
+            name='level'
+            label='Level'
+            rules={[
+              {
+                required: true,
+                message: 'Please provide authorization to the member!',
+              },
+            ]}>
+            <Select defaultValue='Annotator'>
+              <Option value='Owner'>Owner</Option>
+              <Option value='Manager'>Manager</Option>
+              {/* 其他的權限設定 */}
+            </Select>
+          </Form.Item>
           <Form.Item
             {...tailFormItemLayout}
             name='agreement'
