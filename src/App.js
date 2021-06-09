@@ -12,7 +12,6 @@ import Settings from './components/ProjectPanel/Members/Settings';
 
 
 function App() {
-  console.log(process.env.PUBLIC_URL);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>

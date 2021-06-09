@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { Table, Switch } from 'antd';
+import { Table, Switch, Space } from 'antd';
 
 import classes from '../../../styles/ProjectPanel/Member/MemberList.module.css';
 
@@ -16,8 +16,8 @@ const MemberList = () => {
   const [status, setStatus] = useState(true);
 
   const toggleStatus = () => {
-    setStatus(prevState => !prevState);
-  }
+    setStatus((prevState) => !prevState);
+  };
 
   // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {
@@ -49,7 +49,7 @@ const MemberList = () => {
 
     return () => {
       fetchMemberData();
-    }
+    };
   }, [fetchMemberData]);
 
   const TABLE_COLUMN = [
@@ -78,8 +78,12 @@ const MemberList = () => {
         // -> 更新資料庫會員的狀態
         const onToggle = (checked) => {
           status = checked;
-        }
-        return <Switch defaultChecked onChange={onToggle}/>;
+        };
+        return (
+          <Space>
+            <Switch defaultChecked onChange={onToggle} />
+          </Space>
+        );
       },
     },
   ];
@@ -88,13 +92,10 @@ const MemberList = () => {
     <div className={classes.members}>
       <div>
         <Table
-          scroll={{ x: 1000, y: 500 }}
+          scroll={{ x: 1000, y: 400 }}
           pagination={false}
           columns={TABLE_COLUMN}
           dataSource={members}
-          rowClassName={(status, index) => {
-            
-          }}
         />
       </div>
     </div>

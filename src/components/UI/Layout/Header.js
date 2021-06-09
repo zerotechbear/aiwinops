@@ -1,8 +1,15 @@
-import { Link, NavLink } from 'react-router-dom';
-import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
+import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
+import {
+  UserOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
 import classes from '../../../styles/UI/Layout/Header.module.css';
+
+import AuthContext from '../../../store/auth-context';
 
 const navLinks = [
   {
@@ -23,27 +30,40 @@ const navLinks = [
   },
 ];
 
-const menu = (
-  <Menu>
-    <Menu.Item>
-      {/* 導向個人資訊頁面 -> /uid/settings */}
-      <Link to='/settings'>Setting</Link>
-    </Menu.Item>
-    <Menu.Item>
-      {/* 確認登出後刪除Token資訊 */}
-      <Link to='/'>Logout</Link>
-    </Menu.Item>
-  </Menu>
-);
-
-const NavHeader = () => {
+const Header = () => {
   const { Header } = Layout;
   const { Search } = Input;
+  const history = useHistory();
+  const authCtx = useContext(AuthContext);
 
   // 搜尋專案 -> 可能透過Antd Table Column Filter
   const searchProjectHandler = (value) => {
     console.log(value);
   };
+
+  const userLogout = (e) => {
+    console.log(e.key);
+    console.log(authCtx);
+    if (e.key === 'settings'){
+      history.push('/settings');
+    }
+    if (e.key === 'logout') {
+      authCtx.logout();
+      history.replace('/');
+    }
+  };
+
+  const menu = (
+    <Menu theme='dark' onClick={userLogout}>
+      <Menu.Item key='settings' icon={<SettingOutlined />}>
+        {/* 導向個人資訊頁面 -> /uid/settings */}
+        Setting
+      </Menu.Item>
+      <Menu.Item key='logout' icon={<LogoutOutlined />}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <Header className={classes.header}>
@@ -66,7 +86,7 @@ const NavHeader = () => {
               </li>
             ))}
             <span className={classes.avatar}>
-              <Dropdown overlay={menu} placement='bottomRight' arrow>
+              <Dropdown overlay={menu} placement='bottomRight' placement='bottomRight'>
                 <Avatar size={50} icon={<UserOutlined />}></Avatar>
               </Dropdown>
             </span>
@@ -77,4 +97,4 @@ const NavHeader = () => {
   );
 };
 
-export default NavHeader;
+export default Header;

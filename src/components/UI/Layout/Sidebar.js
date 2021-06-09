@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Layout, Menu, Button } from 'antd';
 import {
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
+  LineChartOutlined,
   UserOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -14,13 +15,18 @@ import 'antd/dist/antd.css';
 import classes from '../../../styles/UI/Layout/Sidebar.module.css';
 
 
-const NavLeft = () => {
+const Sidebar = () => {
   const { Sider } = Layout;
+  const history = useHistory();
 
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleMenu = () => {
     setCollapsed((collapsed) => !collapsed);
+  };
+
+  const panelInfoRouter = (e) => {
+    history.push(`/${e.key}`);
   };
 
   return (
@@ -32,17 +38,21 @@ const NavLeft = () => {
         mode='inline'
         theme='dark'
         defaultSelectedKeys={['1']}
-        style={{ height: '100%', borderRight: 0 }}>
-        <Menu.Item key='1' icon={<PieChartOutlined />}>
-          <Link to='/home'>Project</Link>
+        style={{ height: '100%', borderRight: 0 }}
+        onClick={panelInfoRouter}>
+        <Menu.Item key='home' icon={<PieChartOutlined />}>
+          Project
         </Menu.Item>
-        <Menu.Item key='2' icon={<DesktopOutlined />}>
+        <Menu.Item key='dashboard' icon={<DesktopOutlined />}>
           Dashboard
         </Menu.Item>
-        <Menu.Item key='3' icon={<ContainerOutlined />}>
+        <Menu.Item key='report' icon={<UserOutlined />}>
+          <Link to='/report'>Report</Link>
+        </Menu.Item>
+        <Menu.Item key='quota' icon={<ContainerOutlined />}>
           Quota
         </Menu.Item>
-        <Menu.Item key='4' icon={<UserOutlined />}>
+        <Menu.Item key='members' icon={<UserOutlined />}>
           <Link to='/members'>Members</Link>
         </Menu.Item>
       </Menu>
@@ -50,4 +60,4 @@ const NavLeft = () => {
   );
 };
 
-export default NavLeft;
+export default Sidebar;

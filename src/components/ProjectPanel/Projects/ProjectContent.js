@@ -15,20 +15,18 @@ const ProjectContent = () => {
   };
 
   return (
-    <Layout style={{ backgroundColor: '#fff'}} >
-      <Content className={classes.content} style={{ width: '100%'}}>
-        <div className={classes.title}>
-          <h3>Projects</h3>
-          <Button
-            type='primary'
-            onClick={newProjectHandler}
-            style={{ fontWeight: '700' }}>
-            +新專案
-          </Button>
-        </div>
-        <ProjectList />
-      </Content>
-    </Layout>
+    <Content style={{ margin: '0 30px'}}>
+      <div className={classes.title}>
+        <h3>Projects</h3>
+        <Button
+          type='primary'
+          onClick={newProjectHandler}
+          style={{ fontWeight: '700' }}>
+          +新專案
+        </Button>
+      </div>
+      <ProjectList />
+    </Content>
   );
 };
 

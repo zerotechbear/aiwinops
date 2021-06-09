@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Route, useHistory, useParams } from 'react-router-dom';
 
 import classes from '../../styles/Login/LoginForm.module.css';
 import { Form, Input, Button } from 'antd';
@@ -19,6 +19,8 @@ const LoginForm = (props) => {
 
   const authCtx = useContext(AuthContext);
   const history = useHistory();
+
+  let { path, url} = useParams(); 
 
   // TODO: 驗證USER登入 -> POST/auth/login
   const loginAuthHandler = (values) => {
@@ -41,7 +43,9 @@ const LoginForm = (props) => {
         }
       })
       .then((data) => {
+        authCtx.isLoggedIn = true;
         authCtx.login(data.idToken);
+        
         history.replace('/home');
       })
       .catch(() => {
