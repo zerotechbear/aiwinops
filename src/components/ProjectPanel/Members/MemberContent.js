@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { Layout, Button } from 'antd';
 import classes from '../../../styles/ProjectPanel/Projects/ProjectContent.module.css';
@@ -7,11 +7,12 @@ import MemberList from './MemberList';
 
 const MemberContent = () => {
   const { Content } = Layout;
+  const { url } = useRouteMatch();
 
   const history = useHistory();
 
   const newMemberHandler = () => {
-    history.push('/new-member');
+    history.push(`${url}/new-member`);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Layout, Menu, Button } from 'antd';
 import {
   PieChartOutlined,
@@ -17,6 +17,7 @@ import classes from '../../../styles/UI/Layout/Sidebar.module.css';
 
 const Sidebar = () => {
   const { Sider } = Layout;
+  const { uid } = useParams();
   const history = useHistory();
 
   const [collapsed, setCollapsed] = useState(false);
@@ -26,7 +27,7 @@ const Sidebar = () => {
   };
 
   const panelInfoRouter = (e) => {
-    history.push(`/${e.key}`);
+    history.push(`/${e.key}/${uid}`);
   };
 
   return (
@@ -37,23 +38,23 @@ const Sidebar = () => {
       <Menu
         mode='inline'
         theme='dark'
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={['project']}
         style={{ height: '100%', borderRight: 0 }}
         onClick={panelInfoRouter}>
-        <Menu.Item key='home' icon={<PieChartOutlined />}>
+        <Menu.Item key='project' icon={<PieChartOutlined />}>
           Project
         </Menu.Item>
         <Menu.Item key='dashboard' icon={<DesktopOutlined />}>
           Dashboard
         </Menu.Item>
-        <Menu.Item key='report' icon={<UserOutlined />}>
-          <Link to='/report'>Report</Link>
+        <Menu.Item key='report' icon={<LineChartOutlined />}>
+          Report
         </Menu.Item>
         <Menu.Item key='quota' icon={<ContainerOutlined />}>
           Quota
         </Menu.Item>
         <Menu.Item key='members' icon={<UserOutlined />}>
-          <Link to='/members'>Members</Link>
+          Members
         </Menu.Item>
       </Menu>
     </Sider>

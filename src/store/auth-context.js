@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 
 const AuthContext = React.createContext({
-  token: '',
+  token: null,
   isLoggedIn: false,
-  login: token => {},
+  userId: '',
+  login: (token) => {},
   logout: () => {},
 });
 
@@ -17,26 +18,32 @@ const retrieveToken = () => {
 
 export const AuthContextProvider = (props) => {
   const tokenData = retrieveToken();
-
   const [token, setToken] = useState(tokenData);
+  const [userid, setUserid] = useState('');
 
-  let userIsLoggedIn = !!token;
+  // !!物件永遠回傳true
+  const userIsLoggedIn = !!token;
 
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem('token', token);
   };
-  
-  const logoutHandler = useCallback(() => {
+
+  const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem('token');
-  }, []);
+  };
+
+  const userInfoHandler = (email) => {
+    setUserid(email);
+  };
 
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    userInfo: userInfoHandler,
   };
 
   return (

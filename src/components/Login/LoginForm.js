@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, Route, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import classes from '../../styles/Login/LoginForm.module.css';
 import { Form, Input, Button } from 'antd';
@@ -7,6 +7,7 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import Card from '../UI/Layout/Card';
 import Error from '../UI/Modal/Error';
+
 import AuthContext from '../../store/auth-context';
 
 // 目前使用 Firebase Authentication模擬登入
@@ -19,8 +20,6 @@ const LoginForm = (props) => {
 
   const authCtx = useContext(AuthContext);
   const history = useHistory();
-
-  let { path, url} = useParams(); 
 
   // TODO: 驗證USER登入 -> POST/auth/login
   const loginAuthHandler = (values) => {
@@ -43,10 +42,9 @@ const LoginForm = (props) => {
         }
       })
       .then((data) => {
-        authCtx.isLoggedIn = true;
         authCtx.login(data.idToken);
-        
-        history.replace('/home');
+        authCtx.userInfo(data.email);
+        history.replace(`/project/${data.email}`);
       })
       .catch(() => {
         setIsLoginFail(true);
@@ -92,6 +90,7 @@ const LoginForm = (props) => {
               ]}>
               <Input.Password
                 placeholder='Password'
+                autoComplete='on'
                 prefix={<LockOutlined />}
               />
             </Form.Item>
