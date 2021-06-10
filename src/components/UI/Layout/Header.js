@@ -38,9 +38,9 @@ const Header = () => {
     console.log(value);
   };
 
-  const userLogout = (e) => {
+  const userMenu = (e) => {
     if (e.key === 'settings'){
-      history.push('/settings');
+      history.push(`/members/${uid}/settings`);
     }
     if (e.key === 'logout') {
       authCtx.logout();
@@ -49,7 +49,7 @@ const Header = () => {
   };
 
   const menu = (
-    <Menu theme='dark' onClick={userLogout}>
+    <Menu theme='dark' onClick={userMenu}>
       <Menu.Item key='settings' icon={<SettingOutlined />}>
         {/* 導向個人資訊頁面 -> /uid/settings */}
         Setting

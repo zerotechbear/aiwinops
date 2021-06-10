@@ -3,10 +3,12 @@ import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 
 import LoginForm from '../components/Login/LoginForm';
 import ResetForm from '../components/Login/ResetForm';
-import ProjectPage from './ProjectPage';
-import MemberPage from './MemberPage';
 
 import AuthContext from '../store/auth-context';
+
+import ProjectPage from './ProjectPage';
+import MemberPage from './MemberPage';
+import QuotaPage from './QuotaPage';
 
 const LoginPage = (props) => {
   const authCtx = useContext(AuthContext);
@@ -24,6 +26,9 @@ const LoginPage = (props) => {
         </Route>
         <Route path='/members/:uid'>
           {authCtx.token ? <MemberPage /> : <Redirect to='/' />}
+        </Route>
+        <Route path='/quota/:uid'>
+          {authCtx.token ? <QuotaPage /> : <Redirect to='/' />}
         </Route>
       </Switch>
     </BrowserRouter>
