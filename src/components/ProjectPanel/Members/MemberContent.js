@@ -17,7 +17,7 @@ const MemberContent = () => {
 
   return (
     <Layout style={{ backgroundColor: '#fff' }}>
-      <Content style={{ margin: '0 50px' }}>
+      <Content style={{ margin: '0 30px' }}>
         <div className={classes.title}>
           <h3>Members</h3>
           <Button

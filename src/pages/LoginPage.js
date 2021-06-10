@@ -9,6 +9,7 @@ import AuthContext from '../store/auth-context';
 import ProjectPage from './ProjectPage';
 import MemberPage from './MemberPage';
 import QuotaPage from './QuotaPage';
+import DashboardPage from './DashboardPage';
 
 const LoginPage = (props) => {
   const authCtx = useContext(AuthContext);
@@ -29,6 +30,9 @@ const LoginPage = (props) => {
         </Route>
         <Route path='/quota/:uid'>
           {authCtx.token ? <QuotaPage /> : <Redirect to='/' />}
+        </Route>
+        <Route path='/dashboard/:uid'>
+          {authCtx.token ? <DashboardPage /> : <Redirect to='/' />}
         </Route>
       </Switch>
     </BrowserRouter>
