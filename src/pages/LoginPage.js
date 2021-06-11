@@ -12,8 +12,13 @@ import QuotaPage from './QuotaPage';
 import DashboardPage from './DashboardPage';
 import ReportPage from './ReportPage';
 
+import AboutPage from './AboutPage';
+import TutorialsPage from './TutorialsPage';
+import HelpPage from './HelpPage';
+
 const LoginPage = (props) => {
   const authCtx = useContext(AuthContext);
+  console.log(authCtx.token);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
@@ -24,19 +29,40 @@ const LoginPage = (props) => {
           <ResetForm />
         </Route>
         <Route path='/project/:uid'>
-          {authCtx.token ? <ProjectPage /> : <Redirect to='/' />}
+          {localStorage.getItem('token') ? (
+            <ProjectPage />
+          ) : (
+            <Redirect to='/' />
+          )}
         </Route>
         <Route path='/members/:uid'>
-          {authCtx.token ? <MemberPage /> : <Redirect to='/' />}
+          {localStorage.getItem('token') ? <MemberPage /> : <Redirect to='/' />}
         </Route>
         <Route path='/quota/:uid'>
-          {authCtx.token ? <QuotaPage /> : <Redirect to='/' />}
+          {localStorage.getItem('token') ? <QuotaPage /> : <Redirect to='/' />}
         </Route>
         <Route path='/dashboard/:uid'>
-          {authCtx.token ? <DashboardPage /> : <Redirect to='/' />}
+          {localStorage.getItem('token') ? (
+            <DashboardPage />
+          ) : (
+            <Redirect to='/' />
+          )}
         </Route>
         <Route path='/report/:uid'>
-          {authCtx.token ? <ReportPage /> : <Redirect to='/' />}
+          {localStorage.getItem('token') ? <ReportPage /> : <Redirect to='/' />}
+        </Route>
+        <Route path='/about'>
+          {localStorage.getItem('token') ? <AboutPage /> : <Redirect to='/' />}
+        </Route>
+        <Route path='/tutorials'>
+          {localStorage.getItem('token') ? (
+            <TutorialsPage />
+          ) : (
+            <Redirect to='/' />
+          )}
+        </Route>
+        <Route path='/help'>
+          {localStorage.getItem('token') ? <HelpPage /> : <Redirect to='/' />}
         </Route>
       </Switch>
     </BrowserRouter>
