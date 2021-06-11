@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 
-import classes from '../../../styles/ProjectPanel/Projects/ProjectContent.module.css';
+import classes from '../../../styles/Panel/Projects/ProjectContent.module.css';
 import { Layout } from 'antd';
 
 import DashboardGraph from './DashboardGraph';
@@ -12,6 +12,8 @@ const DashboardContent = () => {
   const { url } = useRouteMatch();
 
   const history = useHistory();
+  console.log(url);
+  console.log(history);
 
   return (
     <Fragment>

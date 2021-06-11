@@ -1,40 +1,42 @@
-import { useRouteMatch, useHistory } from 'react-router-dom';
+import {
+  useRouteMatch,
+  useHistory,
+} from 'react-router-dom';
 
-import classes from '../../../styles/ProjectPanel/Projects/ProjectContent.module.css';
+import classes from '../../../styles/Panel/Projects/ProjectContent.module.css';
 import { Layout, Button } from 'antd';
 
+import ProjectList from './ProjectList';
 import { Fragment } from 'react';
 
-import QuotaList from './QuotaList';
-
-const QuotaContent = () => {
+const ProjectContent = () => {
   const { Content } = Layout;
 
   const { url } = useRouteMatch();
 
   const history = useHistory();
 
-  const quotaUpgrade = () => {
+  const newProjectHandler = () => {
     console.log(url);
-    history.push(`${url}/quota-upgrade`);
+    history.push(`${url}/new-project`);
   };
 
   return (
     <Fragment>
       <Content style={{ margin: '0 30px' }}>
         <div className={classes.title}>
-          <h3>Quota</h3>
+          <h3>Projects</h3>
           <Button
             type='primary'
-            onClick={quotaUpgrade}
+            onClick={newProjectHandler}
             style={{ fontWeight: '700' }}>
-            Upgrade
+            +新專案
           </Button>
         </div>
-        <QuotaList />
+        <ProjectList />
       </Content>
     </Fragment>
   );
 };
 
-export default QuotaContent;
+export default ProjectContent;

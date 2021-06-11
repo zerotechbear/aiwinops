@@ -1,8 +1,8 @@
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import MemberPanel from '../components/ProjectPanel/Members/MemberPanel';
-import NewMember from '../components/ProjectPanel/Members/NewMember';
-import Settings from '../components/ProjectPanel/Members/Settings';
+import MemberPanel from '../components/Panel/Members/MemberPanel';
+import NewMember from '../components/Panel/Members/NewMember';
+import Settings from '../components/Panel/Members/Settings';
 
 const MemberPage = () => {
   const { path } = useRouteMatch();

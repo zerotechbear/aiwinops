@@ -10,6 +10,7 @@ import ProjectPage from './ProjectPage';
 import MemberPage from './MemberPage';
 import QuotaPage from './QuotaPage';
 import DashboardPage from './DashboardPage';
+import ReportPage from './ReportPage';
 
 const LoginPage = (props) => {
   const authCtx = useContext(AuthContext);
@@ -33,6 +34,9 @@ const LoginPage = (props) => {
         </Route>
         <Route path='/dashboard/:uid'>
           {authCtx.token ? <DashboardPage /> : <Redirect to='/' />}
+        </Route>
+        <Route path='/report/:uid'>
+          {authCtx.token ? <ReportPage /> : <Redirect to='/' />}
         </Route>
       </Switch>
     </BrowserRouter>

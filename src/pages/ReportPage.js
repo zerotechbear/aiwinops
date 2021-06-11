@@ -1,16 +1,17 @@
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import DashboardPanel from '../components/Panel/Dashboard/DashboardPanel';
 
-const DashboardPage = () => {
+import ReportPanel from '../components/Panel/Report/ReportPanel';
+
+const ReportPage = () => {
   const { path } = useRouteMatch();
 
   return (
     <Switch>
       <Route path={`${path}`} exact>
-        <DashboardPanel />;
+        <ReportPanel />
       </Route>
     </Switch>
   );
 };
 
-export default DashboardPage;
+export default ReportPage;

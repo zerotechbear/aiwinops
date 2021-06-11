@@ -52,19 +52,3 @@ const ModelPie = () => {
 };
 
 export default ModelPie;
-
-
-//   let config = {
-//     appendPadding: 10,
-//     data: ModelPie,
-//     angleField: 'value',
-//     colorField: 'type',
-//     radius: 0.8,
-//     label: {
-//       type: 'spider',
-//       labelHeight: 30,
-//       content: '{name}\n{percentage}',
-//     },
-//     inteactions: [{ type: 'element-selected' }, { type: 'element-active' }],
-//   };
-// };

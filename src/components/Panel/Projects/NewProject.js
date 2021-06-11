@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { CirclePicker } from 'react-color';
-import classes from '../../../styles/ProjectPanel/Projects/NewProject.module.css';
+import classes from '../../../styles/Panel/Projects/NewProject.module.css';
 
 import NavHeader from '../../UI/Layout/Header';
 

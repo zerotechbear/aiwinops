@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import classes from '../../../styles/ProjectPanel/Member/Settings.module.css';
+import classes from '../../../styles/Panel/Member/Settings.module.css';
 import { Form, Upload, Input, Avatar, Button } from 'antd';
 import { UploadOutlined, UserOutlined } from '@ant-design/icons';
 

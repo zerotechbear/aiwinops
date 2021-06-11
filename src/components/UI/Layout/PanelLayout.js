@@ -20,7 +20,7 @@ const PanelLayout = (props) => {
         <Sidebar />
         <Layout style={{ backgroundColor: '#fff' }}>  
           {props.children}
-          <Footer style={{  textAlign: 'center', padding: '10px',  }}>Copyright @ 2021 AIWinOps. All Rights Reserved</Footer>
+          <Footer style={{  textAlign: 'center', padding: '10px', zIndex: '20' }}>Copyright @ 2021 AIWinOps. All Rights Reserved</Footer>
         </Layout>
       </Layout>
     </Layout>

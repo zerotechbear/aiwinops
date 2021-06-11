@@ -70,7 +70,6 @@ const ProjectList = (props) => {
           });
         }
         setProjectData(storeData);
-        console.log(projectData);
       })
       .catch((error) => {
         throw new Error(error);

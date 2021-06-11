@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 import { Table, Switch, Space } from 'antd';
 
-import classes from '../../../styles/ProjectPanel/Member/MemberList.module.css';
+import classes from '../../../styles/Panel/Member/MemberList.module.css';
 
 // 目前使用 Firebase Realtime Database 模擬會員資料
 const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
@@ -13,11 +13,7 @@ const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
 const MemberList = () => {
   const [members, setMembers] = useState();
-  const [status, setStatus] = useState(true);
-
-  const toggleStatus = () => {
-    setStatus((prevState) => !prevState);
-  };
+  
 
   // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {

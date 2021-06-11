@@ -1,6 +1,6 @@
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import NewProject from '../components/ProjectPanel/Projects/NewProject';
-import ProjectPanel from '../components/ProjectPanel/Projects/ProjectPanel';
+import NewProject from '../components/Panel/Projects/NewProject';
+import ProjectPanel from '../components/Panel/Projects/ProjectPanel';
 
 const ProjectPage = () => {
   const { path } = useRouteMatch();  

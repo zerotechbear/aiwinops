@@ -1,12 +1,12 @@
 import { useHistory } from 'react-router-dom';
 
-import classes from '../../../styles/ProjectPanel/Projects/NewProject.module.css';
+import classes from '../../../styles/Panel/Projects/NewProject.module.css';
 
 import NavHeader from '../../UI/Layout/Header';
 
 const QuotaUpgrade = () => {
   const history = useHistory();
-
+  console.log(history);
   return (
     <div>
       <NavHeader />

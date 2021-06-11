@@ -1,7 +1,7 @@
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { Layout, Button } from 'antd';
-import classes from '../../../styles/ProjectPanel/Projects/ProjectContent.module.css';
+import classes from '../../../styles/Panel/Projects/ProjectContent.module.css';
 
 import MemberList from './MemberList';
 

@@ -39,7 +39,7 @@ const Header = () => {
   };
 
   const userMenu = (e) => {
-    if (e.key === 'settings'){
+    if (e.key === 'settings') {
       history.push(`/members/${uid}/settings`);
     }
     if (e.key === 'logout') {
@@ -74,22 +74,19 @@ const Header = () => {
               className={classes.search}
             />
             <li>
-              <NavLink to={`/project/${uid}`} activeClassName={classes.active}>Home</NavLink>
+              <NavLink to={`/project/${uid}`} activeClassName={classes.active}>
+                Home
+              </NavLink>
             </li>
             {navLinks.map((link, index) => (
               <li key={index}>
-                <NavLink
-                  to={link.path}
-                  activeClassName={classes.active}>
+                <NavLink to={link.path} activeClassName={classes.active}>
                   {link.title}
                 </NavLink>
               </li>
             ))}
             <span className={classes.avatar}>
-              <Dropdown
-                overlay={menu}
-                placement='bottomRight'
-                placement='bottomRight'>
+              <Dropdown overlay={menu} placement='bottomRight'>
                 <Avatar size={50} icon={<UserOutlined />}></Avatar>
               </Dropdown>
             </span>
