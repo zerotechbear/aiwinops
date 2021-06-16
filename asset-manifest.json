@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/aiwinops/static/css/main.34fa2f25.chunk.css",
-    "main.js": "/aiwinops/static/js/main.5131e021.chunk.js",
-    "main.js.map": "/aiwinops/static/js/main.5131e021.chunk.js.map",
-    "runtime-main.js": "/aiwinops/static/js/runtime-main.891ac878.js",
-    "runtime-main.js.map": "/aiwinops/static/js/runtime-main.891ac878.js.map",
+    "main.css": "/aiwinops/static/css/main.dd4a8106.chunk.css",
+    "main.js": "/aiwinops/static/js/main.4df3968b.chunk.js",
+    "main.js.map": "/aiwinops/static/js/main.4df3968b.chunk.js.map",
+    "runtime-main.js": "/aiwinops/static/js/runtime-main.5146b806.js",
+    "runtime-main.js.map": "/aiwinops/static/js/runtime-main.5146b806.js.map",
     "static/css/2.3c3a73a9.chunk.css": "/aiwinops/static/css/2.3c3a73a9.chunk.css",
-    "static/js/2.771abd18.chunk.js": "/aiwinops/static/js/2.771abd18.chunk.js",
-    "static/js/2.771abd18.chunk.js.map": "/aiwinops/static/js/2.771abd18.chunk.js.map",
-    "static/js/3.6b07b847.chunk.js": "/aiwinops/static/js/3.6b07b847.chunk.js",
-    "static/js/3.6b07b847.chunk.js.map": "/aiwinops/static/js/3.6b07b847.chunk.js.map",
+    "static/js/2.f232dfea.chunk.js": "/aiwinops/static/js/2.f232dfea.chunk.js",
+    "static/js/2.f232dfea.chunk.js.map": "/aiwinops/static/js/2.f232dfea.chunk.js.map",
+    "static/js/3.627cee00.chunk.js": "/aiwinops/static/js/3.627cee00.chunk.js",
+    "static/js/3.627cee00.chunk.js.map": "/aiwinops/static/js/3.627cee00.chunk.js.map",
     "index.html": "/aiwinops/index.html",
     "static/css/2.3c3a73a9.chunk.css.map": "/aiwinops/static/css/2.3c3a73a9.chunk.css.map",
-    "static/css/main.34fa2f25.chunk.css.map": "/aiwinops/static/css/main.34fa2f25.chunk.css.map",
-    "static/js/2.771abd18.chunk.js.LICENSE.txt": "/aiwinops/static/js/2.771abd18.chunk.js.LICENSE.txt",
+    "static/css/main.dd4a8106.chunk.css.map": "/aiwinops/static/css/main.dd4a8106.chunk.css.map",
+    "static/js/2.f232dfea.chunk.js.LICENSE.txt": "/aiwinops/static/js/2.f232dfea.chunk.js.LICENSE.txt",
     "static/media/LoginForm.module.css": "/aiwinops/static/media/logo.0beb87f2.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.891ac878.js",
+    "static/js/runtime-main.5146b806.js",
     "static/css/2.3c3a73a9.chunk.css",
-    "static/js/2.771abd18.chunk.js",
-    "static/css/main.34fa2f25.chunk.css",
-    "static/js/main.5131e021.chunk.js"
+    "static/js/2.f232dfea.chunk.js",
+    "static/css/main.dd4a8106.chunk.css",
+    "static/js/main.4df3968b.chunk.js"
   ]
 }
