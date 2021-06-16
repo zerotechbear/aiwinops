@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams} from 'react-router-dom';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { CirclePicker } from 'react-color';
@@ -13,6 +13,7 @@ const NewProject = () => {
   const { TextArea } = Input;
   const [form] = Form.useForm();
   const history = useHistory();
+  const { uid } = useParams();
 
   const [projectColor, setProjectColor] = useState('#fff');
 
@@ -25,11 +26,13 @@ const NewProject = () => {
     fetch(PROJECT_URL, {
       method: 'POST',
       body: JSON.stringify({
-        build_time: new Date().toISOString().toString(),
+        build_time: new Date().toISOString().toString().slice(0, -5),
         name: values.project_name,
         manager: values.project_manager,
         color: values.project_color.hex,
         description: values.project_description,
+        agreement: values.project_agreement,
+        status: 'In Progress',
         editable:　true,
       }),
       headers: { 'Content-Type': 'application/json'}
@@ -38,11 +41,11 @@ const NewProject = () => {
     }).catch((error) => {
       throw new Error(error);
     });
-    history.push('/home');
+    history.push(`/project/${uid}`);
   };
 
   const cancleProjectHandler = () => {
-    history.push('/home');
+    history.push(`/project/${uid}`);
   };
 
   return (
@@ -106,7 +109,7 @@ const NewProject = () => {
             </Form.Item>
           </div>
           <Form.Item
-            name='agreement'
+            name='project_agreement'
             valuePropName='checked'
             rules={[
               {

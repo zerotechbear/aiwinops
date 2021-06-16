@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { Form, Input, Checkbox, Button, Select } from 'antd';
 import classes from '../../../styles/Panel/Member/NewMember.module.css';
@@ -45,6 +45,7 @@ const tailFormItemLayout = {
 
 const NewMember = () => {
   const [form] = Form.useForm();
+  const { uid } = useParams();
   const history = useHistory();
 
   const { Option } = Select;
@@ -55,6 +56,7 @@ const NewMember = () => {
     fetch(MEMBER_URL, {
       method: 'POST',
       body: JSON.stringify({
+        register_time: new Date().toISOString().toString().slice(0, -5),
         email: values.email,
         password: values.password,
         username: values.username,
@@ -71,7 +73,7 @@ const NewMember = () => {
       .catch((error) => {
         throw new Error(error);
       });
-    history.replace('/members');
+    history.replace(`/members/${uid}`);
   };
 
   return (
@@ -121,7 +123,7 @@ const NewMember = () => {
                 message: 'Please input your password!',
               },
             ]}>
-            <Input.Password />
+            <Input.Password autoComplete='password' />
           </Form.Item>
           <Form.Item
             name='confirm'
@@ -142,18 +144,19 @@ const NewMember = () => {
                 },
               }),
             ]}>
-            <Input.Password />
+            <Input.Password autoComplete='confirm' />
           </Form.Item>
           <Form.Item
             name='level'
             label='Level'
+            initialValue='Owner'
             rules={[
               {
                 required: true,
                 message: 'Please provide authorization to the member!',
               },
             ]}>
-            <Select defaultValue='Annotator'>
+            <Select>
               <Option value='Owner'>Owner</Option>
               <Option value='Manager'>Manager</Option>
               {/* 其他的權限設定 */}
@@ -173,7 +176,10 @@ const NewMember = () => {
             ]}>
             <Checkbox>
               我已經閱讀
-              <a href='https://www.cathaysite.com.tw/uploads/11datademand/02/1816_1.pdf'>
+              <a
+                href='https://www.zerodimension.com.tw/html/HDUT%20PBL%20PRIVACY.htm'
+                target='_blank'
+                rel='noreferrer'>
                 相關聲明
               </a>
             </Checkbox>

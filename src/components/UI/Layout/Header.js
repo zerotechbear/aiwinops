@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-import { Input, Avatar, Layout, Menu, Dropdown } from 'antd';
+import { Input, Avatar, Menu, Dropdown } from 'antd';
 import {
   UserOutlined,
   SettingOutlined,
@@ -28,7 +28,7 @@ const navLinks = [
 
 const Header = () => {
   const { uid } = useParams();
-  const { Header } = Layout;
+  // const { Header } = Layout;
   const { Search } = Input;
   const history = useHistory();
   const authCtx = useContext(AuthContext);
@@ -61,7 +61,7 @@ const Header = () => {
   );
 
   return (
-    <Header className={classes.header}>
+    <header className={classes.header}>
       <span className={classes.logo}>
         <NavLink to={`/project/${uid}`}>AIWinOps</NavLink>
       </span>
@@ -93,7 +93,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-    </Header>
+    </header>
   );
 };
 

@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import classes from '../../styles/Login/LoginForm.module.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Message, message } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import Card from '../UI/Layout/Card';
@@ -15,7 +15,6 @@ const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const SIGN_IN_API = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_KEY}`;
 
 const LoginForm = (props) => {
-  const [isLoginFail, setIsLoginFail] = useState(false);
   const [form] = Form.useForm();
 
   const authCtx = useContext(AuthContext);
@@ -38,22 +37,21 @@ const LoginForm = (props) => {
         if (response.ok) {
           return response.json();
         } else {
-          setIsLoginFail(true);
+          message.error('The email is invalid or password is incorrect!');
+          
         }
       })
       .then((data) => {
         authCtx.login(data.idToken);
         authCtx.userInfo(data.email);
+        message.success('You have successfully logged in!');
         history.replace(`/project/${data.email}`);
       })
-      .catch(() => {
-        setIsLoginFail(true);
+      .catch((error) => {
+        // Other Error Message
       });
   };
 
-  const closeModal = () => {
-    setIsLoginFail(false);
-  };
 
   return (
     <section className={classes.login}>
@@ -110,12 +108,7 @@ const LoginForm = (props) => {
                 <Link to='/reset'>Forget Password?</Link>
               </Button>
             </div>
-          </Form>
-          {isLoginFail && (
-            <Error onCloseModal={closeModal}>
-              The email or password is invalid{' '}
-            </Error>
-          )}
+          </Form>     
         </section>
       </Card>
     </section>

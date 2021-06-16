@@ -29,6 +29,7 @@ const MemberList = () => {
             id: data[key].name,
             name: data[key].username,
             level: data[key].level,
+            time: data[key].register_time,
             status: data[key].status,
             email: data[key].email,
           });
@@ -42,29 +43,34 @@ const MemberList = () => {
 
   useEffect(() => {
     fetchMemberData();
-
-    return () => {
-      fetchMemberData();
-    };
-  }, [fetchMemberData]);
+  }, [members, fetchMemberData]);
 
   const TABLE_COLUMN = [
     {
       title: '名稱',
       key: 'name',
       dataIndex: 'name',
-      width: '20%',
+      width: '10%',
     },
     {
       title: '權限',
       key: 'level',
       dataIndex: 'level',
+      width: '10%',
+    },
+    {
+      title: '註冊時間',
+      key: 'time',
+      dataIndex: 'time',
       width: '20%',
     },
     {
       title: '信箱',
       key: 'email',
       dataIndex: 'email',
+      render: (text) => {
+        return <a>{text}</a>;
+      },
     },
     {
       title: '狀態',

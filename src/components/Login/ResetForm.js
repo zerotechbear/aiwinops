@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Message, message } from 'antd';
 import { MailOutlined, ArrowLeftOutlined} from '@ant-design/icons';
 import classes from '../../styles/Login/ResetForm.module.css';
 
 import Card from '../UI/Layout/Card';
-import Message from '../UI/Modal/Message';
+// import Message from '../UI/Modal/Message';
 
 // 目前使用 Firebase Authentication模擬登出
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
@@ -15,8 +15,7 @@ const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCod
 const ResetForm = (props) => {
   const [form] = Form.useForm();
   const history = useHistory();
-
-  const [isReset, setIsReset] = useState(false);
+  
   const [isExist, setIsExist] = useState(true);
 
   // TODO: 驗證USER登入 -> POST/auth/reset -> 發送重設密碼信件給已註冊的使用者
@@ -33,12 +32,12 @@ const ResetForm = (props) => {
     })
       .then((response) => {
         if (response.ok) {
-          setIsReset(true);
+          message.success('Reset email is sent, please check your email.');
           setTimeout(() => {   
             history.push('/');
           }, 2000);
         } else {
-          setIsExist(false);
+          message.error('Email account does not exist!');
         }
       })
       .catch((error) => {
@@ -50,10 +49,10 @@ const ResetForm = (props) => {
     setIsExist(true);
   };
 
+
+
   return (
     <section className={classes.reset}>
-      {!isExist && <Message>Email does not exist!</Message>}
-      {isReset && <Message>Reset email is sent!</Message>}
       <Card>
         <section className={classes.form}>
           <Form

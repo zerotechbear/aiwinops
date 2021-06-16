@@ -23,6 +23,7 @@
   width: 45%;
   left: 50%;
   background-color: #fff;
+  position: relative;
 }
 
 .form h2 {
@@ -47,16 +48,14 @@
 }
 
 .help button {
-  display: block;
   font-size: 12px;
-  width: 10rem;
+  width: 11rem;
   border: inherit;
   background-color: inherit;
   color: #03a9f4;
   margin: auto;
   margin-top: 5px;
   margin-bottom: 1rem;
-  padding: 5px 0;
 }
 
 button {
@@ -75,4 +74,16 @@ button:active {
 
 button:focus {
   outline: none;
+}
+
+@media screen and (max-width: 700px) {
+  .help {
+    display: inline-block;
+  }
+  .help button {
+    width: 100%;
+    
+    border-radius: 5px;
+  
+  }
 }
