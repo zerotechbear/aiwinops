@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Layout, Menu, Button } from 'antd';
 import {
@@ -14,11 +14,14 @@ import {
 import 'antd/dist/antd.css';
 import classes from '../../../styles/UI/Layout/Sidebar.module.css';
 
+import AuthContext from '../../../store/auth-context';
 
 const Sidebar = () => {
   const { Sider } = Layout;
   const { uid } = useParams();
   const history = useHistory();
+
+  const authCtx = useContext(AuthContext);
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -44,18 +47,18 @@ const Sidebar = () => {
         <Menu.Item key='project' icon={<PieChartOutlined />}>
           Project
         </Menu.Item>
-        <Menu.Item key='dashboard' icon={<DesktopOutlined />}>
+        {authCtx.userInfo.level === 'owner' ? <Menu.Item key='dashboard' icon={<DesktopOutlined />}>
           Dashboard
-        </Menu.Item>
-        <Menu.Item key='report' icon={<LineChartOutlined />}>
+        </Menu.Item> : null}
+        {authCtx.userInfo.level === 'owner' ? <Menu.Item key='report' icon={<LineChartOutlined />}>
           Report
-        </Menu.Item>
-        <Menu.Item key='quota' icon={<ContainerOutlined />}>
+        </Menu.Item> : null}
+        {authCtx.userInfo.level === 'owner' ? <Menu.Item key='quota' icon={<ContainerOutlined />}>
           Quota
-        </Menu.Item>
-        <Menu.Item key='members' icon={<UserOutlined />}>
+        </Menu.Item> : null}
+        {authCtx.userInfo.level === 'owner' ? <Menu.Item key='members' icon={<UserOutlined />}>
           Members
-        </Menu.Item>
+        </Menu.Item> : null}
       </Menu>
     </Sider>
   );

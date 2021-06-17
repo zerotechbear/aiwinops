@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Table, Space, Modal } from 'antd';
 import {
   EditOutlined,
@@ -66,7 +67,7 @@ const ProjectList = (props) => {
       key: 'name',
       dataIndex: 'name',
       render: (text, record) => {
-        return <a>{text}</a>;
+        return <Link to='/project/checking'>{text}</Link>
       },
     },
     {
@@ -142,7 +143,7 @@ const ProjectList = (props) => {
 
   useEffect(() => {
     fetchProjectData();
-  }, [projectData]);
+  }, [fetchProjectData]);
 
   return (
     <div>

@@ -4,21 +4,22 @@ import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import LoginForm from '../components/Login/LoginForm';
 import ResetForm from '../components/Login/ResetForm';
 
-import AuthContext from '../store/auth-context';
-
 import ProjectPage from './ProjectPage';
 import MemberPage from './MemberPage';
 import QuotaPage from './QuotaPage';
 import DashboardPage from './DashboardPage';
 import ReportPage from './ReportPage';
-
 import AboutPage from './AboutPage';
 import TutorialsPage from './TutorialsPage';
 import HelpPage from './HelpPage';
 
-const LoginPage = (props) => {
+
+import AuthContext from '../store/auth-context';
+
+
+const LoginPage = () => {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.token);
+  console.log(authCtx);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
@@ -29,11 +30,7 @@ const LoginPage = (props) => {
           <ResetForm />
         </Route>
         <Route path='/project/:uid'>
-          {localStorage.getItem('token') ? (
-            <ProjectPage />
-          ) : (
-            <Redirect to='/' />
-          )}
+          {authCtx.userInfo.email !== '' ? <ProjectPage /> : <Redirect to='/404' />}
         </Route>
         <Route path='/members/:uid'>
           {localStorage.getItem('token') ? <MemberPage /> : <Redirect to='/' />}

@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 const AuthContext = React.createContext({
   token: null,
   isLoggedIn: false,
-  userId: '',
   login: (token) => {},
   logout: () => {},
+  userInfo: {email: '', level: ''},
+  userInfoHandler: (email, level) => {}
 });
 
 const retrieveToken = () => {
@@ -18,8 +19,8 @@ const retrieveToken = () => {
 
 export const AuthContextProvider = (props) => {
   const tokenData = retrieveToken();
-  const [token, setToken] = useState(tokenData);
-  const [userid, setUserid] = useState('');
+  const [token, setToken] = useState(tokenData.token);
+  const [userInfo, setUserInfo] = useState({email: '', level: ''});
 
   // !!物件永遠回傳true
   const userIsLoggedIn = !!token;
@@ -31,11 +32,14 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = () => {
     setToken(null);
+    setUserInfo({email: '', level: ''});
     localStorage.removeItem('token');
+    localStorage.removeItem('level');
   };
 
-  const userInfoHandler = (email) => {
-    setUserid(email);
+  const userInfoHandler = (e, l) => {
+    setUserInfo({email: e, level: l});
+    localStorage.setItem('level', l);
   };
 
   const contextValue = {
@@ -43,7 +47,8 @@ export const AuthContextProvider = (props) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
-    userInfo: userInfoHandler,
+    userInfo: userInfo,
+    userInfoHandler: userInfoHandler,
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import { Form, Input, Button, Message, message } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { MailOutlined, ArrowLeftOutlined} from '@ant-design/icons';
 import classes from '../../styles/Login/ResetForm.module.css';
 

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { useRouteMatch, useHistory } from 'react-router-dom';
+// import { useRouteMatch, useHistory } from 'react-router-dom';
 
 import classes from '../../../styles/Panel/Projects/ProjectContent.module.css';
 import { Layout, Cascader } from 'antd';
@@ -9,9 +9,9 @@ import ReportGraph from './ReportGraph';
 const ReportContent = () => {
   const { Content } = Layout;
 
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   // 各專案名稱 -> 需傳入專案名
   const options = [

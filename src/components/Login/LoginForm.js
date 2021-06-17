@@ -1,12 +1,11 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import classes from '../../styles/Login/LoginForm.module.css';
-import { Form, Input, Button, Message, message } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import Card from '../UI/Layout/Card';
-import Error from '../UI/Modal/Error';
 
 import AuthContext from '../../store/auth-context';
 
@@ -14,7 +13,7 @@ import AuthContext from '../../store/auth-context';
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const SIGN_IN_API = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_KEY}`;
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const [form] = Form.useForm();
 
   const authCtx = useContext(AuthContext);
@@ -36,22 +35,25 @@ const LoginForm = (props) => {
       .then((response) => {
         if (response.ok) {
           return response.json();
-        } else {
-          message.error('The email is invalid or password is incorrect!');
-          
         }
+        return Promise.reject(
+          message.error('The email is invalid or password is incorrect!'),
+        );
       })
       .then((data) => {
         authCtx.login(data.idToken);
-        authCtx.userInfo(data.email);
-        message.success('You have successfully logged in!');
+        message.success('Login!');
+        authCtx.userInfoHandler(data.email, '');
+        if (data.email === 'owner@owner.com') {
+          authCtx.userInfoHandler(data.email, 'owner');
+          message.info('Owner');
+        }
         history.replace(`/project/${data.email}`);
       })
       .catch((error) => {
-        // Other Error Message
+        console.log(error);
       });
   };
-
 
   return (
     <section className={classes.login}>
@@ -104,11 +106,11 @@ const LoginForm = (props) => {
                 rel='noreferrer'>
                 <Button type='default'>Help</Button>
               </a>
-              <Button type='default'>
-                <Link to='/reset'>Forget Password?</Link>
-              </Button>
+              <Link to='/reset'>
+                <Button>Forget Password?</Button>
+              </Link>
             </div>
-          </Form>     
+          </Form>
         </section>
       </Card>
     </section>

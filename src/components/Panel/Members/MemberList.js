@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
+import { Link } from 'react-router-dom';
 import { Table, Switch, Space } from 'antd';
 
 import classes from '../../../styles/Panel/Member/MemberList.module.css';
@@ -43,7 +43,7 @@ const MemberList = () => {
 
   useEffect(() => {
     fetchMemberData();
-  }, [members, fetchMemberData]);
+  }, [fetchMemberData]);
 
   const TABLE_COLUMN = [
     {
@@ -69,7 +69,7 @@ const MemberList = () => {
       key: 'email',
       dataIndex: 'email',
       render: (text) => {
-        return <a>{text}</a>;
+        return <Link to='/members/checking'>{text}</Link>;
       },
     },
     {
