@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Space, Modal } from 'antd';
 import {
@@ -7,6 +7,7 @@ import {
   CloseCircleOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons';
+import AuthContext from '../../../store/auth-context';
 
 const PROJECT_URL =
   'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
@@ -14,6 +15,40 @@ const PROJECT_URL =
 const ProjectList = (props) => {
   const [projectData, setProjectData] = useState();
   const { confirm } = Modal;
+
+  const authCtx = useContext(AuthContext);
+  const level = authCtx.userInfo.level;
+  const actions =
+    level === 'owner'
+      ? {
+          title: '其他操作',
+          key: 'editable',
+          dataIndex: 'editable',
+          render: () => {
+            return (
+              <Space>
+                {/* 連結Icon到各自專案的編輯畫面 */}
+                <EditOutlined
+                  style={{ fontSize: '150%', color: '#096dd9' }}
+                  onClick={showEditModal}
+                />
+                <DeleteOutlined
+                  style={{
+                    fontSize: '150%',
+                    margin: '0 1rem',
+                    color: '#ff4d4f',
+                  }}
+                  onClick={showDeleteModal}
+                />
+              </Space>
+            );
+          },
+        }
+      : {
+          title: '其他操作',
+          key: 'editable',
+          dataIndex: 'editable',
+        };
 
   // TODO: 取得後端資料庫的專案資料
   const showEditModal = () => {
@@ -67,7 +102,7 @@ const ProjectList = (props) => {
       key: 'name',
       dataIndex: 'name',
       render: (text, record) => {
-        return <Link to='/project/checking'>{text}</Link>
+        return <Link to='/project/checking'>{text}</Link>;
       },
     },
     {
@@ -91,28 +126,7 @@ const ProjectList = (props) => {
       key: 'modify_time',
       dataIndex: 'modify_time',
     },
-    {
-      title: '其他操作',
-      key: 'editable',
-      dataIndex: 'editable',
-      render: (editable) => {
-        return (
-          <Space>
-            {/* 連結Icon到各自專案的編輯畫面 */}
-            {editable && (
-              <EditOutlined
-                style={{ fontSize: '150%', color: '#096dd9' }}
-                onClick={showEditModal}
-              />
-            )}
-            <DeleteOutlined
-              style={{ fontSize: '150%', margin: '0 1rem', color: '#ff4d4f' }}
-              onClick={showDeleteModal}
-            />
-          </Space>
-        );
-      },
-    },
+    actions,
   ];
 
   // 抓取使用者專案的資料 -> GET/ProjectData
@@ -131,7 +145,6 @@ const ProjectList = (props) => {
             manager: data[key].manager,
             build_time: data[key].build_time,
             modify_time: data[key].modify_time,
-            editable: data[key].editable,
           });
         }
         setProjectData(storeData);

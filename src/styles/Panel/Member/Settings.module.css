@@ -27,7 +27,7 @@
 .main,
 .password {
   display: flex;
-  height: 10rem;
+  height: 15rem;
   border-bottom: 1px solid #eee;
 }
 
@@ -55,7 +55,9 @@
   height: 15rem;
 }
 
-.update {
+.btn {
+  display: flex;
+  justify-content: space-between;
   margin-top: 2rem;
   margin-right: 3rem;
   text-align: right;

@@ -33,6 +33,7 @@ export const AuthContextProvider = (props) => {
   const logoutHandler = () => {
     setToken(null);
     setUserInfo({email: '', level: ''});
+    localStorage.removeItem('uid');
     localStorage.removeItem('token');
     localStorage.removeItem('level');
   };
@@ -40,6 +41,7 @@ export const AuthContextProvider = (props) => {
   const userInfoHandler = (e, l) => {
     setUserInfo({email: e, level: l});
     localStorage.setItem('level', l);
+    localStorage.setItem('uid', e);
   };
 
   const contextValue = {

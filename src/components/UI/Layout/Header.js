@@ -80,7 +80,7 @@ const Header = () => {
             </li>
             {navLinks.map((link, index) => (
               <li key={index}>
-                <NavLink to={link.path} activeClassName={classes.active}>
+                <NavLink to={`${link.path}/${uid}`} activeClassName={classes.active}>
                   {link.title}
                 </NavLink>
               </li>

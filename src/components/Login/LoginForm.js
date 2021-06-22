@@ -46,7 +46,7 @@ const LoginForm = () => {
         authCtx.userInfoHandler(data.email, '');
         if (data.email === 'owner@owner.com') {
           authCtx.userInfoHandler(data.email, 'owner');
-          message.info('Owner');
+          message.success('You are logged in as Owner!');
         }
         history.replace(`/project/${data.email}`);
       })

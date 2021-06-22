@@ -1,10 +1,17 @@
 import { useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import classes from '../../../styles/Panel/Member/Settings.module.css';
-import { Form, Upload, Input, Avatar, Button } from 'antd';
-import { UploadOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Form, Input, Upload, message } from 'antd';
+import {
+  ArrowLeftOutlined,
+  UploadOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 import NavHeader from '../../UI/Layout/Header';
+
 import AuthContext from '../../../store/auth-context';
 
 // 目前使用 Firebase Authentication模擬修改使用者資訊
@@ -27,16 +34,23 @@ const Settings = () => {
         idToken: authCtx.token,
         displayName: values.username,
         photoUrl: values.avatar,
-        email: values.email
-      })
-    })
+        email: values.email,
+      }),
+      headers: { 'Content-Type': 'application/json'}
+    }).then(response => {
+      if(response.ok){
+        message.success('成功更新個人資訊!');
+      } else {
+        message.error('無法更新個人資訊!');
+      }
+    });
   };
 
   return (
     <div>
       <NavHeader />
       <section className={classes.settings}>
-        <h2>Settings</h2>
+        <h2>個人設定</h2>
         <Form
           form={form}
           name='settings'
@@ -44,30 +58,32 @@ const Settings = () => {
           scrollToFirstError>
           <div className={classes.avatar}>
             <section className='left'>
-              <h3>Public Avatar</h3>
+              <h3>大頭照</h3>
               <p>
-                You can change your avatar here or remove the current avatar to
-                revert to UserOutlined.
+                上傳新的照片或移除當前的照片
               </p>
             </section>
 
             <section className='right'>
-              <Avatar size={90} icon={<UserOutlined />} />
+              <Avatar size={80} icon={<UserOutlined />} style={{marginBottom: '1rem'}}/>
               <Form.Item
                 name='upload'
-                label='Upload Avatar'
                 valuePropName='fileList'
                 getValueFromEvent={avatarFile}>
-                <Upload name='avatar' action='/upload.do' listType='picture'>
-                  <Button icon={<UploadOutlined />}>Upload</Button>
+                <Upload
+                  name='avatar'
+                  action='/upload.do'
+                  listType='picture'
+                  maxCount={1}>
+                  <Button icon={<UploadOutlined />}>上傳</Button>
                 </Upload>
               </Form.Item>
             </section>
           </div>
           <div className={classes.main}>
             <section className='left'>
-              <h3>Main Settings</h3>
-              <p>This information will appear on your profile</p>
+              <h3>主設定</h3>
+              <p>資訊將會顯示在人物簡介中</p>
             </section>
             <section className='right'>
               <Form.Item name='username' label='Username'>
@@ -80,10 +96,9 @@ const Settings = () => {
           </div>
           <div className={classes.password}>
             <section className='left'>
-              <h3>Change Password</h3>
+              <h3>更換密碼</h3>
               <p>
-                You will be directed to the login page after you update your
-                password
+                成功更新密碼後將返回登入頁面
               </p>
             </section>
             <section className='right'>
@@ -114,9 +129,22 @@ const Settings = () => {
               </Form.Item>
             </section>
           </div>
-          <section className={classes.update}>
+          <section className={classes.btn}>
             <Form.Item>
-              <Button type='primary' htmlType='submit'>
+              <Link to={`/project/${authCtx.userInfo.email}`}>
+                <Button
+                  type='link'
+                  style={{ color: '#000', border: '1px solid #555' }}>
+                  <ArrowLeftOutlined />
+                  返回專案
+                </Button>
+              </Link>
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type='primary'
+                htmlType='submit'
+                style={{ fontWeight: '600' }}>
                 更新個人資料
               </Button>
             </Form.Item>

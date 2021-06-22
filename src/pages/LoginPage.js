@@ -1,5 +1,7 @@
 import { useContext } from 'react';
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import { Link, Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+
+import { Button, Result } from 'antd';
 
 import LoginForm from '../components/Login/LoginForm';
 import ResetForm from '../components/Login/ResetForm';
@@ -13,9 +15,7 @@ import AboutPage from './AboutPage';
 import TutorialsPage from './TutorialsPage';
 import HelpPage from './HelpPage';
 
-
 import AuthContext from '../store/auth-context';
-
 
 const LoginPage = () => {
   const authCtx = useContext(AuthContext);
@@ -30,7 +30,21 @@ const LoginPage = () => {
           <ResetForm />
         </Route>
         <Route path='/project/:uid'>
-          {authCtx.userInfo.email !== '' ? <ProjectPage /> : <Redirect to='/404' />}
+          {localStorage.getItem('uid') !== '' ? (
+            <ProjectPage />
+          ) : (
+            <Result
+              status='404'
+              title='404'
+              subTitle='Sorry, the page does not exist.'
+              extra={
+                <Link to={`/project/${authCtx.userInfo.email}`}>
+                {/* // <Link to='/'> */}
+                  <Button type='primary'>Back</Button>
+                </Link>
+              }
+            />
+          )}
         </Route>
         <Route path='/members/:uid'>
           {localStorage.getItem('token') ? <MemberPage /> : <Redirect to='/' />}
@@ -48,17 +62,17 @@ const LoginPage = () => {
         <Route path='/report/:uid'>
           {localStorage.getItem('token') ? <ReportPage /> : <Redirect to='/' />}
         </Route>
-        <Route path='/about'>
+        <Route path='/about/:uid'>
           {localStorage.getItem('token') ? <AboutPage /> : <Redirect to='/' />}
         </Route>
-        <Route path='/tutorials'>
+        <Route path='/tutorials/:uid'>
           {localStorage.getItem('token') ? (
             <TutorialsPage />
           ) : (
             <Redirect to='/' />
           )}
         </Route>
-        <Route path='/help'>
+        <Route path='/help/:uid'>
           {localStorage.getItem('token') ? <HelpPage /> : <Redirect to='/' />}
         </Route>
       </Switch>
