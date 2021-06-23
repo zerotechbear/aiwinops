@@ -2,8 +2,8 @@
   display: block;
   flex-direction: row;
   width: 50rem;
-  max-width: 80%;
-  margin: 8rem auto;
+  max-width: 100%;
+  margin: 10rem auto;
   position: relative;
 }
 
