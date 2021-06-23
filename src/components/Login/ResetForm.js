@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import { Form, Input, Button, message } from 'antd';
-import { MailOutlined, ArrowLeftOutlined} from '@ant-design/icons';
-import classes from '../../styles/Login/ResetForm.module.css';
+import classes from '../../styles/Login/ResetForm.module.scss';
 
-import Card from '../UI/Layout/Card';
-// import Message from '../UI/Modal/Message';
+import { Button, Card, Form, Input, message } from 'antd';
+import { MailOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+
+// import Card from '../UI/Layout/Card';
 
 // 目前使用 Firebase Authentication模擬登出
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
@@ -15,7 +15,7 @@ const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCod
 const ResetForm = (props) => {
   const [form] = Form.useForm();
   const history = useHistory();
-  
+
   const [isExist, setIsExist] = useState(true);
 
   // TODO: 驗證USER登入 -> POST/auth/reset -> 發送重設密碼信件給已註冊的使用者
@@ -33,7 +33,7 @@ const ResetForm = (props) => {
       .then((response) => {
         if (response.ok) {
           message.success('Reset email is sent, please check your email.');
-          setTimeout(() => {   
+          setTimeout(() => {
             history.push('/');
           }, 2000);
         } else {
@@ -49,57 +49,64 @@ const ResetForm = (props) => {
     setIsExist(true);
   };
 
-
-
   return (
-    <section className={classes.reset}>
-      <Card>
-        <section className={classes.form}>
-          <Form
-            form={form}
-            onValuesChange={emailEnter}
-            onFinish={resetPasswordHandler}>
-            <h3>Reset Password</h3>
-            <Form.Item
-              name='email'
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your email to reset!',
-                },
-                {
-                  type: 'email',
-                  message: 'The email format is invalid!',
-                },
-                {
-                  validator: async (_, value) => {
-                    if (!isExist) {
-                      throw new Error('Email does not exist!');
-                    }
-                  },
-                },
-              ]}>
-              <Input prefix={<MailOutlined />} placeholder='name@domain.com' />
-            </Form.Item>
-            <div className={classes.send}>
-              <Form.Item>
-                <Link to='/'>
-                  <Button type='default' style={{ color: '#000' }}>
-                    <ArrowLeftOutlined />
-                    LOGIN
-                  </Button>
-                </Link>
-              </Form.Item>
-              <Form.Item>
-                <Button type='primary' htmlType='submit'>
-                  Send
-                </Button>
-              </Form.Item>
-            </div>
-          </Form>
-        </section>
-      </Card>
-    </section>
+    <Card
+      title='Reset Password'
+      hoverable
+      headStyle={{
+        textAlign: 'center',
+        fontSize: '1.25rem',
+      }}
+      style={{
+        width: '25rem',
+        margin: '10rem auto',
+      }}>
+      <Form
+        form={form}
+        onValuesChange={emailEnter}
+        onFinish={resetPasswordHandler}
+        style={{
+          width: '80%',
+          margin: 'auto',
+        }}>
+        <Form.Item
+          name='email'
+          rules={[
+            {
+              required: true,
+              message: 'Please enter your email to reset!',
+            },
+            {
+              type: 'email',
+              message: 'The email format is invalid!',
+            },
+            {
+              validator: async (_, value) => {
+                if (!isExist) {
+                  throw new Error('Email does not exist!');
+                }
+              },
+            },
+          ]}>
+          <Input prefix={<MailOutlined />} placeholder='Email@domain.com' />
+        </Form.Item>
+        <div className={classes.send}>
+          <Form.Item>
+            <Link to='/'>
+              <Button type='default' style={{ color: '#000' }}>
+                <ArrowLeftOutlined />
+                LOGIN
+              </Button>
+            </Link>
+          </Form.Item>
+          <Form.Item>
+            <Button type='primary' htmlType='submit'>
+              SEND
+            </Button>
+          </Form.Item>
+        </div>
+      </Form>
+    </Card>
   );
 };
 

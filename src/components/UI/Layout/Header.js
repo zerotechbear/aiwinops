@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-import { Input, Avatar, Menu, Dropdown } from 'antd';
+import classes from '../../../styles/UI/Layout/Header.module.scss';
+
+import { Avatar, Dropdown, Input, Layout, Menu } from 'antd';
 import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import classes from '../../../styles/UI/Layout/Header.module.css';
 
 import AuthContext from '../../../store/auth-context';
 
@@ -28,7 +29,7 @@ const navLinks = [
 
 const Header = () => {
   const { uid } = useParams();
-  // const { Header } = Layout;
+  const { Header } = Layout;
   const { Search } = Input;
   const history = useHistory();
   const authCtx = useContext(AuthContext);
@@ -62,6 +63,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
+    {/* // <Header style={{}}> */}
       <span className={classes.logo}>
         <NavLink to={`/project/${uid}`}>AIWinOps</NavLink>
       </span>
@@ -80,7 +82,9 @@ const Header = () => {
             </li>
             {navLinks.map((link, index) => (
               <li key={index}>
-                <NavLink to={`${link.path}/${uid}`} activeClassName={classes.active}>
+                <NavLink
+                  to={`${link.path}/${uid}`}
+                  activeClassName={classes.active}>
                   {link.title}
                 </NavLink>
               </li>
@@ -93,7 +97,8 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-    </header>
+      </header> 
+    // </Header>
   );
 };
 

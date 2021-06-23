@@ -1,0 +1,21 @@
+@import '~antd/dist/antd.dark.css';
+
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  // border: 1px solid #000; 
+}
+
+html,
+body {
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,11 @@
+.logo {
+  width: 10rem;
+  height: 12rem;
+  position: absolute;
+  top: calc(50% - 6rem);
+  left: calc(25% - 5rem);
+  background-image: url('../../assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: initial;
+}

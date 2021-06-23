@@ -1,11 +1,19 @@
 import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import classes from '../../styles/Login/LoginForm.module.css';
-import { Form, Input, Button, message } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import classes from '../../styles/Login/LoginForm.module.scss';
 
-import Card from '../UI/Layout/Card';
+import {
+  Button,
+  Card,
+  Checkbox,
+  Form,
+  Input,
+  Space,
+  Typography,
+  message,
+} from 'antd';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import AuthContext from '../../store/auth-context';
 
@@ -15,9 +23,9 @@ const SIGN_IN_API = `https://identitytoolkit.googleapis.com/v1/accounts:signInWi
 
 const LoginForm = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const authCtx = useContext(AuthContext);
-  const history = useHistory();
 
   // TODO: 驗證USER登入 -> POST/auth/login
   const loginAuthHandler = (values) => {
@@ -55,65 +63,89 @@ const LoginForm = () => {
       });
   };
 
+  const checkRemeberEmail = (e) => {
+    // 若核可 -> 儲存Email到Cookies
+    if(e.target.checked) {
+      //...
+    }
+  };
+
   return (
-    <section className={classes.login}>
-      <Card>
-        <span className={classes.logo} />
-        <section className={classes.form}>
-          <h2>Member Login</h2>
-          <Form
-            form={form}
-            name='login'
-            onFinish={loginAuthHandler}
-            scrollToFirstError>
-            <Form.Item
-              name='email'
-              rules={[
-                {
-                  type: 'email',
-                  message: 'The email format is invalid!',
-                },
-                {
-                  required: true,
-                  message: 'The email is empty!',
-                },
-              ]}>
-              <Input prefix={<MailOutlined />} placeholder='Email@domain.com' />
-            </Form.Item>
-            <Form.Item
-              name='password'
-              rules={[
-                {
-                  required: true,
-                  message: 'The password is empty!',
-                },
-              ]}>
-              <Input.Password
-                placeholder='Password'
-                autoComplete='on'
-                prefix={<LockOutlined />}
-              />
-            </Form.Item>
-            <div className={classes.submit}>
-              <Button type='primary' htmlType='submit'>
-                LOGIN
-              </Button>
-            </div>
-            <div className={classes.help}>
-              <a
-                href='https://www.zerodimension.com.tw/default.aspx#contact'
-                target='_blank'
-                rel='noreferrer'>
-                <Button type='default'>Help</Button>
-              </a>
-              <Link to='/reset'>
-                <Button>Forget Password?</Button>
-              </Link>
-            </div>
-          </Form>
-        </section>
-      </Card>
-    </section>
+    <Card
+      size='small'
+      hoverable
+      style={{ width: '50rem', height: '100%', margin: '10rem auto' }}>
+      <span className={classes.logo} />
+      <Form
+        form={form}
+        name='login'
+        onFinish={loginAuthHandler}
+        scrollToFirstError
+        style={{
+          width: '45%',
+          left: '50%',
+          marginTop: '3.5rem',
+          backgroundColor: '#fff',
+          position: 'relative',
+        }}>
+        <Form.Item
+          name='email'
+          rules={[
+            {
+              type: 'email',
+              message: 'The email format is invalid!',
+            },
+            {
+              required: true,
+              message: 'The email is empty!',
+            },
+          ]}>
+          <Input prefix={<MailOutlined />} placeholder='Email@domain.com' />
+        </Form.Item>
+        <Form.Item
+          name='password'
+          rules={[
+            {
+              required: true,
+              message: 'The password is empty!',
+            },
+          ]}>
+          <Input.Password
+            placeholder='PASSWORD'
+            autoComplete='on'
+            prefix={<LockOutlined />}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Checkbox onChange={checkRemeberEmail}>Remember Me</Checkbox>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type='primary'
+            htmlType='submit'
+            style={{
+              width: '100%',
+              fontWeight: '600',
+              borderRadius: '5px',
+            }}>
+            LOGIN
+          </Button>
+        </Form.Item>
+        <Space size={160}>
+          <Typography.Link
+            href='https://www.zerodimension.com.tw/default.aspx#contact'
+            target='_blank'
+            rel='noreferrer'>
+            <Button type='link' style={{ width: '100%', color: '#03a9f4' }}>
+              HELP
+            </Button>
+          </Typography.Link>
+          <Link to='/reset'>
+            <Button type='link'>Find Password</Button>
+          </Link>
+        </Space>
+      </Form>
+    </Card>
   );
 };
 

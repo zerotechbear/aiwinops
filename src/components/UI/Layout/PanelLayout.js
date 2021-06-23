@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import { Layout } from 'antd';
-import 'antd/dist/antd.css';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
