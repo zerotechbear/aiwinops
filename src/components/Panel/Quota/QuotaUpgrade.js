@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-import classes from '../../../styles/Panel/Projects/NewProject.module.css';
+import classes from '../../../styles/Panel/Projects/NewProject.module.scss';
 
 import NavHeader from '../../UI/Layout/Header';
 

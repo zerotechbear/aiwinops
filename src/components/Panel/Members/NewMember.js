@@ -1,7 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 
 import { Form, Input, Checkbox, Button, Select } from 'antd';
-import classes from '../../../styles/Panel/Member/NewMember.module.css';
+import classes from '../../../styles/Panel/Member/NewMember.module.scss';
 
 import NavHeader from '../../UI/Layout/Header';
 

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import classes from '../../../styles/Panel/Member/Settings.module.css';
+import classes from '../../../styles/Panel/Member/Settings.module.scss';
 import { Avatar, Button, Form, Input, Upload, message } from 'antd';
 import {
   ArrowLeftOutlined,

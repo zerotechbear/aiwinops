@@ -8,7 +8,7 @@ import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
-  GlobalOutlined,
+  GlobalOutlined
 } from '@ant-design/icons';
 
 import AuthContext from '../../../store/auth-context';
@@ -65,18 +65,19 @@ const Header = () => {
   return (
     <Header
       style={{
+        position: 'fixed',
         width: '100%',
-        height: '4rem',
+        height: '5rem',
         display: 'flex',
         justifyContent: 'space-between',
         zIndex: '5',
       }}>
-      <span className={classes.logo}>
+      <div className={classes.logo}>
         <NavLink to={`/project/${uid}`}>
           <GlobalOutlined style={{ fontSize: '20px', marginRight: '5px' }} />
           AIWinOps
         </NavLink>
-      </span>
+      </div>
       <nav className={classes.nav}>
         <div>
           <ul>

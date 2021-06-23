@@ -5,29 +5,29 @@ import { Layout } from 'antd';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-
 import AuthContext from '../../../store/auth-context';
 
 const PanelLayout = (props) => {
-  const { Footer } = Layout;
+  const { Content, Footer } = Layout;
 
   const authCtx = useContext(AuthContext);
 
   return (
-    <Layout style={{ width: '100%', height: '100vh'}}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header />
-      <Layout
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%',
-         
-        }}>
+      <Layout style={{ backgroundColor: '#fff', top: '5rem' }}>
         {authCtx.userInfo.level === 'owner' ? <Sidebar /> : ''}
-        <Layout style={{ backgroundColor: '#fff' }}>  
+        <Content style={{  margin: '20px 30px' }}>
           {props.children}
-          <Footer style={{  textAlign: 'center', padding: '10px', zIndex: '20' }}>Copyright @ 2021 AIWinOps. All Rights Reserved</Footer>
-        </Layout>
+          <Footer
+            style={{
+              textAlign: 'center',
+              padding: '30px 0',
+              backgroundColor: '#fff',
+            }}>
+            Copyright @ 2021 AIWinOps. All Rights Reserved
+          </Footer>
+        </Content>
       </Layout>
     </Layout>
   );

@@ -6,8 +6,7 @@ const DashboardGraph = () => {
     <Card
       style={{
         width: '100%',
-        height: '600px',
-        overflowY: 'scroll'
+        height: '800px',
       }}>
       <Card>
         <Descriptions title='Training Process' layout='horizontal' bordered>

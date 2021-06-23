@@ -161,7 +161,6 @@ const ProjectList = (props) => {
   return (
     <div>
       <Table
-        scroll={{ x: '1000', y: '500' }}
         pagination={false}
         columns={TABLE_COLUMN}
         dataSource={projectData}

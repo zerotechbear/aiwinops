@@ -27,18 +27,26 @@ const Sidebar = () => {
   };
 
   return (
-    <Sider width={180} collapsedWidth={100} collapsed={collapsed}>
+    <Sider
+      trigger={null}
+      width={200}
+      collapsedWidth={100}
+      collapsed={collapsed}
+      style={{
+        left: '0'
+      }}
+      >
       <Button
-        type='primary'
+        type='dashed'
         onClick={toggleMenu}
-        style={{ display: 'flex', margin: '0', width: '180px' }}>
-        {collapsed ? <MenuUnfoldOutlined style={{ fontSize: '20px'}} /> : <MenuFoldOutlined style={{ fontSize: '20px' }}/>}
+        style={{ display: 'flex', width: '60px', border: 'none' }}>
+        {collapsed ? (
+          <MenuUnfoldOutlined style={{ fontSize: '20px' }} />
+        ) : (
+          <MenuFoldOutlined style={{ fontSize: '20px' }} />
+        )}
       </Button>
-      <Menu
-        mode='inline'
-        theme='dark'
-        
-        onClick={panelInfoRouter}>
+      <Menu mode='inline' theme='dark' onClick={panelInfoRouter}>
         <Menu.Item key='project' icon={<PieChartOutlined />}>
           Project
         </Menu.Item>
