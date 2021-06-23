@@ -14,14 +14,14 @@ const PanelLayout = (props) => {
   const authCtx = useContext(AuthContext);
 
   return (
-    <Layout>
+    <Layout style={{ width: '100%', height: '100vh'}}>
       <Header />
       <Layout
         style={{
-          position: 'fixed',
+          position: 'relative',
           width: '100%',
-          height: '90%',
-          top: '5rem',
+          height: '100%',
+         
         }}>
         {authCtx.userInfo.level === 'owner' ? <Sidebar /> : ''}
         <Layout style={{ backgroundColor: '#fff' }}>  

@@ -11,9 +11,6 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 
-import 'antd/dist/antd.css';
-import classes from '../../../styles/UI/Layout/Sidebar.module.css';
-
 const Sidebar = () => {
   const { Sider } = Layout;
   const { uid } = useParams();
@@ -30,15 +27,17 @@ const Sidebar = () => {
   };
 
   return (
-    <Sider width={200} collapsed={collapsed}>
-      <Button type='primary' onClick={toggleMenu} className={classes.foldBtn}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+    <Sider width={180} collapsedWidth={100} collapsed={collapsed}>
+      <Button
+        type='primary'
+        onClick={toggleMenu}
+        style={{ display: 'flex', margin: '0', width: '180px' }}>
+        {collapsed ? <MenuUnfoldOutlined style={{ fontSize: '20px'}} /> : <MenuFoldOutlined style={{ fontSize: '20px' }}/>}
       </Button>
       <Menu
         mode='inline'
         theme='dark'
         
-        style={{ height: '100%', borderRight: 0 }}
         onClick={panelInfoRouter}>
         <Menu.Item key='project' icon={<PieChartOutlined />}>
           Project

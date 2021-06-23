@@ -8,6 +8,7 @@ import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons';
 
 import AuthContext from '../../../store/auth-context';
@@ -62,13 +63,22 @@ const Header = () => {
   );
 
   return (
-    <header className={classes.header}>
-    {/* // <Header style={{}}> */}
+    <Header
+      style={{
+        width: '100%',
+        height: '4rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        zIndex: '5',
+      }}>
       <span className={classes.logo}>
-        <NavLink to={`/project/${uid}`}>AIWinOps</NavLink>
+        <NavLink to={`/project/${uid}`}>
+          <GlobalOutlined style={{ fontSize: '20px', marginRight: '5px' }} />
+          AIWinOps
+        </NavLink>
       </span>
       <nav className={classes.nav}>
-        <div className={classes.menu}>
+        <div>
           <ul>
             <Search
               placeholder='Search Project'
@@ -91,14 +101,13 @@ const Header = () => {
             ))}
             <span className={classes.avatar}>
               <Dropdown overlay={menu} placement='bottomRight'>
-                <Avatar size={50} icon={<UserOutlined />}></Avatar>
+                <Avatar size={45} icon={<UserOutlined />}></Avatar>
               </Dropdown>
             </span>
           </ul>
         </div>
       </nav>
-      </header> 
-    // </Header>
+    </Header>
   );
 };
 
