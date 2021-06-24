@@ -22,7 +22,7 @@ const ModelPie = () => {
     data: data,
     angleField: 'value',
     colorField: 'type',
-    radius: 1,
+    radius: 0.7,
     innerRadius: 0.4,
     label: {
       type: 'inner',

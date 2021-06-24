@@ -28,14 +28,16 @@ const Sidebar = () => {
 
   return (
     <Sider
+      className='site-layout-background'
       trigger={null}
       width={200}
-      collapsedWidth={100}
+      collapsedWidth={80}
       collapsed={collapsed}
       style={{
-        left: '0'
-      }}
-      >
+        position: 'relative',
+        height: 'auto',
+        zIndex: '3'
+      }}>
       <Button
         type='dashed'
         onClick={toggleMenu}

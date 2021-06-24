@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Layout } from 'antd';
+import { Layout, BackTop } from 'antd';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -12,22 +12,51 @@ const PanelLayout = (props) => {
 
   const authCtx = useContext(AuthContext);
 
+  const backTopStyle = {
+    height: 40,
+    width: 40,
+    lineHeight: '40px',
+    borderRadius: 4,
+    backgroundColor: '#434343',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  };
+
+  const footerStyle = {
+    textAlign: 'center',
+    position: 'fixed',
+    height: '2rem',
+    left: '50px',
+    width: '100%',
+    bottom: '0',
+    padding: '5px',
+    backgroundColor: '#fafafa',
+    color: '#000',
+  };
+
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout>
       <Header />
-      <Layout style={{ backgroundColor: '#fff', top: '5rem' }}>
+      <Layout style={{ top: '5rem' }}>
         {authCtx.userInfo.level === 'owner' ? <Sidebar /> : ''}
-        <Content style={{  margin: '20px 30px' }}>
-          {props.children}
-          <Footer
+        <Layout style={{ overflowY: 'scroll', width: '100%' }}>
+          <Content
             style={{
-              textAlign: 'center',
-              padding: '30px 0',
-              backgroundColor: '#fff',
+              height: '100vh',
+              margin: '30px 50px',
+              boxSizing: 'border-box',
             }}>
+            {props.children}
+            <BackTop visibilityHeight={10}>
+              <div style={backTopStyle}>TOP</div>
+            </BackTop>
+          </Content>
+          <Footer
+            style={footerStyle}>
             Copyright @ 2021 AIWinOps. All Rights Reserved
           </Footer>
-        </Content>
+        </Layout>
       </Layout>
     </Layout>
   );

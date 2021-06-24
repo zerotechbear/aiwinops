@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Switch, Space } from 'antd';
 
-import classes from '../../../styles/Panel/Member/MemberList.module.scss';
-
 // 目前使用 Firebase Realtime Database 模擬會員資料
 const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
@@ -13,7 +11,6 @@ const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 
 const MemberList = () => {
   const [members, setMembers] = useState();
-  
 
   // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {
@@ -91,16 +88,9 @@ const MemberList = () => {
   ];
 
   return (
-    <div className={classes.members}>
-      <div>
-        <Table
-          scroll={{ x: 1000, y: 400 }}
-          pagination={false}
-          columns={TABLE_COLUMN}
-          dataSource={members}
-        />
-      </div>
-    </div>
+    <>
+      <Table pagination={false} columns={TABLE_COLUMN} dataSource={members} />
+    </>
   );
 };
 

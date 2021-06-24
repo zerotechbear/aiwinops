@@ -64,6 +64,7 @@ const Header = () => {
 
   return (
     <Header
+      className="header"
       style={{
         position: 'fixed',
         width: '100%',
