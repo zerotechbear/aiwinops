@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useHistory, useParams} from 'react-router-dom';
-
-import { Form, Input, Button, Checkbox } from 'antd';
+import { useHistory, useParams } from 'react-router-dom';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { CirclePicker } from 'react-color';
+
 import classes from '../../../styles/Panel/Projects/NewProject.module.scss';
 
-import NavHeader from '../../UI/Layout/Header';
+import PanelLayout from '../../UI/Layout/PanelLayout';
 
-const PROJECT_URL = 'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
+const PROJECT_URL =
+  'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
 
 const NewProject = () => {
   const { TextArea } = Input;
@@ -33,15 +34,25 @@ const NewProject = () => {
         description: values.project_description,
         agreement: values.project_agreement,
         status: 'In Progress',
-        editable:　true,
+        editable: true,
       }),
-      headers: { 'Content-Type': 'application/json'}
-    }).then(response => {
-      return response.json();
-    }).catch((error) => {
-      throw new Error(error);
-    });
-    history.push(`/project/${uid}`);
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((response) => {
+        if (response.ok) {
+          message.success('You have created a new project!');
+          return response.json();
+        } else {
+          return message.warning('Fail to create new project!');
+        }
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+
+    setTimeout(() => {
+      history.push(`/project/${uid}`);
+    }, 1000);
   };
 
   const cancleProjectHandler = () => {
@@ -49,8 +60,7 @@ const NewProject = () => {
   };
 
   return (
-    <div>
-      <NavHeader />
+    <PanelLayout>
       <section className={classes.project}>
         <h2>新專案</h2>
         <Form
@@ -134,7 +144,7 @@ const NewProject = () => {
                 type='primary'
                 htmlType='submit'
                 style={{
-                  fontWeight: '600',
+                  fontWeight: '550',
                   backgroundColor: '#096dd9',
                   borderColor: '#096dd9',
                 }}>
@@ -151,7 +161,7 @@ const NewProject = () => {
           </Form.Item>
         </Form>
       </section>
-    </div>
+    </PanelLayout>
   );
 };
 

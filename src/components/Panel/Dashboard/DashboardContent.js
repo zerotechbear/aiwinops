@@ -8,7 +8,16 @@ const DashboardContent = () => {
       <div className={classes.title}>
         <h3>Dashboard</h3>
       </div>
-      <DashboardGraph />
+      <div
+        style={{
+          width: '100%',
+          height: '560px',
+          overflowY: 'scroll',
+          padding: '20px',
+          backgroundColor: '#fff',
+        }}>
+        <DashboardGraph />
+      </div>
     </>
   );
 };

@@ -10,7 +10,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
-import NavHeader from '../../UI/Layout/Header';
+import PanelLayout from '../../UI/Layout/PanelLayout';
 
 import AuthContext from '../../../store/auth-context';
 
@@ -36,9 +36,9 @@ const Settings = () => {
         photoUrl: values.avatar,
         email: values.email,
       }),
-      headers: { 'Content-Type': 'application/json'}
-    }).then(response => {
-      if(response.ok){
+      headers: { 'Content-Type': 'application/json' },
+    }).then((response) => {
+      if (response.ok) {
         message.success('成功更新個人資訊!');
       } else {
         message.error('無法更新個人資訊!');
@@ -47,8 +47,7 @@ const Settings = () => {
   };
 
   return (
-    <div>
-      <NavHeader />
+    <PanelLayout>
       <section className={classes.settings}>
         <h2>個人設定</h2>
         <Form
@@ -59,13 +58,15 @@ const Settings = () => {
           <div className={classes.avatar}>
             <section className='left'>
               <h3>大頭照</h3>
-              <p>
-                上傳新的照片或移除當前的照片
-              </p>
+              <p>上傳新的照片或移除當前的照片</p>
             </section>
 
             <section className='right'>
-              <Avatar size={80} icon={<UserOutlined />} style={{marginBottom: '1rem'}}/>
+              <Avatar
+                size={80}
+                icon={<UserOutlined />}
+                style={{ marginBottom: '1rem' }}
+              />
               <Form.Item
                 name='upload'
                 valuePropName='fileList'
@@ -97,9 +98,7 @@ const Settings = () => {
           <div className={classes.password}>
             <section className='left'>
               <h3>更換密碼</h3>
-              <p>
-                成功更新密碼後將返回登入頁面
-              </p>
+              <p>成功更新密碼後將返回登入頁面</p>
             </section>
             <section className='right'>
               <Form.Item name='current_password' label='Current Password'>
@@ -134,7 +133,7 @@ const Settings = () => {
               <Link to={`/project/${authCtx.userInfo.email}`}>
                 <Button
                   type='link'
-                  style={{ color: '#000', border: '1px solid #555' }}>
+                  style={{ color: '#000', border: '1px solid #ccc' }}>
                   <ArrowLeftOutlined />
                   返回專案
                 </Button>
@@ -151,7 +150,7 @@ const Settings = () => {
           </section>
         </Form>
       </section>
-    </div>
+    </PanelLayout>
   );
 };
 

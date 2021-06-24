@@ -16,7 +16,7 @@ const MemberContent = () => {
   };
 
   return (
-    <>
+    <div style={{ maxWidth: '95%' }}>
       <div className={classes.title}>
         <h3>Members</h3>
         <Button
@@ -27,7 +27,7 @@ const MemberContent = () => {
         </Button>
       </div>
       <MemberList />
-    </>
+    </div>
   );
 };
 

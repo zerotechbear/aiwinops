@@ -1,9 +1,9 @@
 import { useHistory, useParams } from 'react-router-dom';
 
-import { Form, Input, Checkbox, Button, Select } from 'antd';
+import { Button, Checkbox, Form, Input, Select, message } from 'antd';
 import classes from '../../../styles/Panel/Member/NewMember.module.scss';
 
-import NavHeader from '../../UI/Layout/Header';
+import PanelLayout from '../../UI/Layout/PanelLayout';
 
 // 目前使用 Firebase Realtime Database 模擬會員資料
 const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
@@ -68,17 +68,24 @@ const NewMember = () => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((response) => {
-        return response.json();
+        if (response.ok) {
+          message.success('You have created a new member!');
+          return response.json();
+        } else {
+          return message.warning('Fail to create new member!');
+        }
       })
       .catch((error) => {
         throw new Error(error);
       });
-    history.replace(`/members/${uid}`);
+      
+    setTimeout(() => {
+      history.replace(`/members/${uid}`);
+    }, 1000);
   };
 
   return (
-    <div>
-      <NavHeader />
+    <PanelLayout>
       <section className={classes.form}>
         <h2>New Member</h2>
         <Form
@@ -191,7 +198,7 @@ const NewMember = () => {
           </Form.Item>
         </Form>
       </section>
-    </div>
+    </PanelLayout>
   );
 };
 

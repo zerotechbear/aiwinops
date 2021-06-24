@@ -1,14 +1,14 @@
-import { Card, Descriptions, Progress, Tooltip } from 'antd';
+import { Row, Col, Card, Descriptions, Tooltip, Progress, } from 'antd';
 import ModelPie from './ModelPie';
 
 const DashboardGraph = () => {
   return (
-    <Card
-      style={{
-        width: '100%',
-        height: '20vh',
-      }}>
-      <Descriptions title='Training Process' layout='horizontal' bordered>
+    <>
+      <Descriptions
+        title='訓練進度'
+        layout='horizontal'
+        bordered
+        style={{ marginBottom: '1rem' }}>
         <Descriptions.Item
           label='Data'
           span={1}
@@ -35,12 +35,26 @@ const DashboardGraph = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions title='Indicators' layout='vertical' bordered>
-        <Descriptions.Item label='Graph'>
-          <ModelPie />
-        </Descriptions.Item>
-      </Descriptions>
-    </Card>
+      <div className='site-card-wrapper'>
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card title='Traning Model' bordered={true}>
+              <ModelPie />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='Complete Model' bordered={true}>
+              <ModelPie />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='Untrained title' bordered={true}>
+              <ModelPie />
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 };
 

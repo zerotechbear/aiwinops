@@ -19,9 +19,9 @@ const ProjectContent = () => {
     console.log(url);
     history.push(`${url}/new-project`);
   };
-
+  
   return (
-    <>
+    <div style={{ maxWidth: '95%' }}>
       <div className={classes.title}>
         <h3>Projects</h3>
         {authCtx.userInfo.level === 'owner' ? (
@@ -36,7 +36,7 @@ const ProjectContent = () => {
         )}
       </div>
       <ProjectList />
-    </>
+    </div>
   );
 };
 

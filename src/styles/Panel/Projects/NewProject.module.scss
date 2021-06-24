@@ -1,16 +1,15 @@
 .project {
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
   overflow-y: scroll;
   letter-spacing: 1.2px;
-  top: 12vh;
+  top: 50%;
   width: 50rem;
-  height: 35rem;
-  margin: auto;
+  height: 38rem;
   padding: 1.5rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  background-color: #fff;
 }
 
 .project h2 {
@@ -24,11 +23,10 @@
   border-bottom: 2px solid #eee;
 }
 
-.info h4{
+.info h4 {
   margin-top: 1rem;
   font-weight: 700;
 }
-
 
 .protocol {
   margin-top: 1rem;
@@ -39,6 +37,7 @@
 
 .protocol h1 {
   font-weight: 700;
+  font-size: 1rem;
   letter-spacing: 2px;
 }
 
@@ -53,6 +52,3 @@
   justify-content: flex-start;
   margin: 1rem 0;
 }
-
-
-

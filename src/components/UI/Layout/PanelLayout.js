@@ -12,16 +12,6 @@ const PanelLayout = (props) => {
 
   const authCtx = useContext(AuthContext);
 
-  const backTopStyle = {
-    height: 40,
-    width: 40,
-    lineHeight: '40px',
-    borderRadius: 4,
-    backgroundColor: '#434343',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 16,
-  };
 
   const footerStyle = {
     textAlign: 'center',
@@ -33,6 +23,7 @@ const PanelLayout = (props) => {
     padding: '5px',
     backgroundColor: '#fafafa',
     color: '#000',
+    zIndex: '20',
   };
 
   return (
@@ -40,20 +31,17 @@ const PanelLayout = (props) => {
       <Header />
       <Layout style={{ top: '5rem' }}>
         {authCtx.userInfo.level === 'owner' ? <Sidebar /> : ''}
-        <Layout style={{ overflowY: 'scroll', width: '100%' }}>
+        <Layout style={{ width: '100%', height: '100vh', margin: '10px' }}>
           <Content
             style={{
-              height: '100vh',
-              margin: '30px 50px',
+              maxHeight: '100vh',
               boxSizing: 'border-box',
+              margin: '10px'
             }}>
             {props.children}
-            <BackTop visibilityHeight={10}>
-              <div style={backTopStyle}>TOP</div>
-            </BackTop>
           </Content>
-          <Footer
-            style={footerStyle}>
+
+          <Footer style={footerStyle}>
             Copyright @ 2021 AIWinOps. All Rights Reserved
           </Footer>
         </Layout>

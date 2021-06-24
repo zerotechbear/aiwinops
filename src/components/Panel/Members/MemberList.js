@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Table, Switch, Space } from 'antd';
+import { BackTop, Table, Switch, Space } from 'antd';
 
 // 目前使用 Firebase Realtime Database 模擬會員資料
 const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
@@ -10,10 +10,12 @@ const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
 // const MEMBER_LIST_API = `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${FIREBASE_KEY}`;
 
 const MemberList = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [members, setMembers] = useState();
 
   // TODO: 抓取會員的資料 -> GET/MemberData
   const fetchMemberData = useCallback(() => {
+    setIsLoading(true);
     fetch(MEMBER_URL)
       .then((response) => {
         return response.json();
@@ -31,6 +33,7 @@ const MemberList = () => {
             email: data[key].email,
           });
         }
+        setIsLoading(false);
         setMembers(memberData);
       })
       .catch((error) => {
@@ -89,7 +92,16 @@ const MemberList = () => {
 
   return (
     <>
-      <Table pagination={false} columns={TABLE_COLUMN} dataSource={members} />
+      <Table
+        scroll={{ y: 450 }}
+        columns={TABLE_COLUMN}
+        dataSource={members}
+        pagination={false}
+      />
+      <BackTop
+        target={() => document.getElementsByClassName('ant-table-body')[0]}
+        visibilityHeight={300}
+      />
     </>
   );
 };

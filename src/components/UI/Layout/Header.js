@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
+import tempAvatar from '../../../assets/icons/avatar.ico';
+
 import classes from '../../../styles/UI/Layout/Header.module.scss';
 
 import { Avatar, Dropdown, Input, Layout, Menu } from 'antd';
 import {
-  UserOutlined,
   SettingOutlined,
   LogoutOutlined,
   GlobalOutlined
@@ -103,7 +104,7 @@ const Header = () => {
             ))}
             <span className={classes.avatar}>
               <Dropdown overlay={menu} placement='bottomRight'>
-                <Avatar size={45} icon={<UserOutlined />}></Avatar>
+                <Avatar src={tempAvatar} shape="square" size={45} alt="avatar"></Avatar>
               </Dropdown>
             </span>
           </ul>

@@ -2,13 +2,7 @@ import { Descriptions, Card, Badge, Progress, Tooltip } from 'antd';
 
 const QuotaList = () => {
   return (
-    <Card
-      style={{
-        width: '100%',
-        height: '500px',
-        overflowY: 'scroll',
-        marginTop: '1rem',
-      }}>
+    <Card>
       <Descriptions title='Your Solution' layout='vertical' bordered>
         <Descriptions.Item label='Product'>Cloud Database</Descriptions.Item>
         <Descriptions.Item label='Billing Mode'>Paid</Descriptions.Item>

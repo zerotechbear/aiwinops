@@ -22,10 +22,12 @@ const QuotaContent = () => {
           type='primary'
           onClick={quotaUpgrade}
           style={{ fontWeight: '700' }}>
-          Upgrade
+          升級額度
         </Button>
       </div>
-      <QuotaList />
+      <div style={{ width: '100%', height: '550px', overflowY: 'scroll' }}>
+        <QuotaList />
+      </div>
     </>
   );
 };

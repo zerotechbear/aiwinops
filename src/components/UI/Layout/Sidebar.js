@@ -36,7 +36,7 @@ const Sidebar = () => {
       style={{
         position: 'relative',
         height: 'auto',
-        zIndex: '3'
+        zIndex: '30'
       }}>
       <Button
         type='dashed'

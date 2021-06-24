@@ -30,18 +30,18 @@ const ReportContent = () => {
     <>
       <div className={classes.title}>
         <h3>Report</h3>
+        <Cascader
+          defaultValue={['project1']}
+          options={options}
+          onChange={chooseProject}
+          allowClear={false}
+          bordered={false}
+          style={{
+            border: '1px solid #999',
+            margin: '5px 0',
+          }}
+        />
       </div>
-      <Cascader
-        defaultValue={['project1']}
-        options={options}
-        onChange={chooseProject}
-        allowClear={false}
-        bordered={false}
-        style={{
-          border: '1px solid #000',
-          margin: '5px 0',
-        }}
-      />
       <ReportGraph />
     </>
   );

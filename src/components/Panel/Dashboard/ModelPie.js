@@ -18,11 +18,11 @@ const ModelPie = () => {
   ];
 
   let config = {
-    appendPadding: 10,
+    appendPadding: 2,
     data: data,
     angleField: 'value',
     colorField: 'type',
-    radius: 0.7,
+    radius: 1,
     innerRadius: 0.4,
     label: {
       type: 'inner',
@@ -31,6 +31,7 @@ const ModelPie = () => {
       style: {
         textAlign: 'center',
         fontSize: 12,
+        zIndex: '-10'
       },
     },
     interactions: [{ type: 'element-selected' }, { type: 'element-active' }],
@@ -43,7 +44,7 @@ const ModelPie = () => {
           textOverflow: 'ellipsis',
         },
         formatter: function formatter() {
-          return 'Data Model';
+          return '';
         },
       },
     },
