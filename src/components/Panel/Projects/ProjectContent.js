@@ -21,7 +21,7 @@ const ProjectContent = () => {
   };
   
   return (
-    <div style={{ maxWidth: '95%' }}>
+    <div>
       <div className={classes.title}>
         <h3>Projects</h3>
         {authCtx.userInfo.level === 'owner' ? (

@@ -16,7 +16,7 @@ const MemberContent = () => {
   };
 
   return (
-    <div style={{ maxWidth: '95%' }}>
+    <div>
       <div className={classes.title}>
         <h3>Members</h3>
         <Button

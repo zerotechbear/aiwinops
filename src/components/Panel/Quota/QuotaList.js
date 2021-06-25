@@ -7,10 +7,10 @@ const QuotaList = () => {
         <Descriptions.Item label='Product'>Cloud Database</Descriptions.Item>
         <Descriptions.Item label='Billing Mode'>Paid</Descriptions.Item>
         <Descriptions.Item label='Automatic Renewal'>YES</Descriptions.Item>
-        <Descriptions.Item label='Build time'>
+        <Descriptions.Item label='Build time' span={1}>
           2018-04-24 18:00:00
         </Descriptions.Item>
-        <Descriptions.Item label='Status' span={3}>
+        <Descriptions.Item label='Status' span={2}>
           <Badge status='processing' text='Running' />
         </Descriptions.Item>
         <Descriptions.Item label='Member' span={3}>

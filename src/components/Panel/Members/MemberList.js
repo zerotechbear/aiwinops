@@ -93,7 +93,8 @@ const MemberList = () => {
   return (
     <>
       <Table
-        scroll={{ y: 450 }}
+        loading={isLoading}
+        scroll={{ y: 500 }}
         columns={TABLE_COLUMN}
         dataSource={members}
         pagination={false}

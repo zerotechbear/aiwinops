@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext, useRef } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BackTop, Table, Space, Modal } from 'antd';
 import {
@@ -16,8 +16,6 @@ const ProjectList = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [projectData, setProjectData] = useState(null);
   const { confirm } = Modal;
-
-  const tableRef = useRef();
 
   const authCtx = useContext(AuthContext);
   const level = authCtx.userInfo.level;
@@ -157,7 +155,7 @@ const ProjectList = (props) => {
       .catch((error) => {
         throw new Error(error);
       });
-  }, [setProjectData]);
+  }, []);
 
   useEffect(() => {
     fetchProjectData();
@@ -166,6 +164,7 @@ const ProjectList = (props) => {
   return (
     <>
       <Table
+        loading={isLoading}
         scroll={{ y: 500 }}
         columns={TABLE_COLUMN}
         dataSource={projectData}

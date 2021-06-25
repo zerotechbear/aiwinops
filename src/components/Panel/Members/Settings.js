@@ -7,8 +7,9 @@ import { Avatar, Button, Form, Input, Upload, message } from 'antd';
 import {
   ArrowLeftOutlined,
   UploadOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
+
+import tempAvatar from '../../../assets/icons/avatar.ico';
 
 import PanelLayout from '../../UI/Layout/PanelLayout';
 
@@ -63,8 +64,8 @@ const Settings = () => {
 
             <section className='right'>
               <Avatar
-                size={80}
-                icon={<UserOutlined />}
+                src={tempAvatar}
+                size={60}
                 style={{ marginBottom: '1rem' }}
               />
               <Form.Item
@@ -73,6 +74,7 @@ const Settings = () => {
                 getValueFromEvent={avatarFile}>
                 <Upload
                   name='avatar'
+                  label='大頭貼: '
                   action='/upload.do'
                   listType='picture'
                   maxCount={1}>

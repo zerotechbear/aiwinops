@@ -1,17 +1,16 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 
-import { Layout, BackTop } from 'antd';
+import { Layout } from 'antd';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-import AuthContext from '../../../store/auth-context';
+// import AuthContext from '../../../store/auth-context';
 
 const PanelLayout = (props) => {
   const { Content, Footer } = Layout;
-
-  const authCtx = useContext(AuthContext);
-
+  
+  // const authCtx = useContext(AuthContext);
 
   const footerStyle = {
     textAlign: 'center',
@@ -30,17 +29,17 @@ const PanelLayout = (props) => {
     <Layout>
       <Header />
       <Layout style={{ top: '5rem' }}>
-        {authCtx.userInfo.level === 'owner' ? <Sidebar /> : ''}
+        {localStorage.getItem('level') === 'owner' ? <Sidebar /> : ''}
         <Layout style={{ width: '100%', height: '100vh', margin: '10px' }}>
           <Content
             style={{
               maxHeight: '100vh',
               boxSizing: 'border-box',
-              margin: '10px'
+              margin: '10px',
+              maxWidth: '95%'
             }}>
             {props.children}
           </Content>
-
           <Footer style={footerStyle}>
             Copyright @ 2021 AIWinOps. All Rights Reserved
           </Footer>
