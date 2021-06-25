@@ -30,13 +30,12 @@ const PanelLayout = (props) => {
       <Header />
       <Layout style={{ top: '5rem' }}>
         {localStorage.getItem('level') === 'owner' ? <Sidebar /> : ''}
-        <Layout style={{ width: '100%', height: '100vh', margin: '10px' }}>
+        <Layout style={{ width: '100%', height: '100vh', margin: '20px' }}>
           <Content
             style={{
               maxHeight: '100vh',
               boxSizing: 'border-box',
-              margin: '10px',
-              maxWidth: '95%'
+              maxWidth: '98%'
             }}>
             {props.children}
           </Content>

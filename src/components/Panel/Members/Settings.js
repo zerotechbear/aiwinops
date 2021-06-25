@@ -61,7 +61,6 @@ const Settings = () => {
               <h3>大頭照</h3>
               <p>上傳新的照片或移除當前的照片</p>
             </section>
-
             <section className='right'>
               <Avatar
                 src={tempAvatar}
