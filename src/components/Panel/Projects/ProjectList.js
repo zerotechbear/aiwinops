@@ -7,10 +7,11 @@ import {
   CloseCircleOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons';
+
 import AuthContext from '../../../store/auth-context';
 
 const PROJECT_URL =
-  'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
+'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
 
 const ProjectList = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +58,7 @@ const ProjectList = (props) => {
       key: 'name',
       dataIndex: 'name',
       render: (text, record) => {
-        return <Link to='/project/checking'>{text}</Link>;
+        return <Link to={`/project/${text}`}>{text}</Link>;
       },
     },
     {
@@ -165,7 +166,7 @@ const ProjectList = (props) => {
     <>
       <Table
         loading={isLoading}
-        scroll={{ y: 500 }}
+        scroll={{ y: '65vh' }}
         columns={TABLE_COLUMN}
         dataSource={projectData}
         pagination={false}

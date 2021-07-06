@@ -46,7 +46,7 @@ const LoginPage = () => {
             />
           )}
         </Route>
-        <Route path='/members/:uid'>
+        <Route path='/users/:uid'>
           {localStorage.getItem('uid')  !== '' ? <MemberPage /> : <Redirect to='/' />}
         </Route>
         <Route path='/quota/:uid'>

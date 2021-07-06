@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, Checkbox, Form, Input, message } from 'antd';
 import { CirclePicker } from 'react-color';
 
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import classes from '../../../styles/Panel/Projects/NewProject.module.scss';
 
 import PanelLayout from '../../UI/Layout/PanelLayout';
@@ -11,10 +11,10 @@ const PROJECT_URL =
   'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
 
 const NewProject = () => {
-  const { TextArea } = Input;
   const [form] = Form.useForm();
-  const history = useHistory();
   const { uid } = useParams();
+  const { TextArea } = Input;
+  const history = useHistory();
 
   const [projectColor, setProjectColor] = useState('#fff');
 
@@ -22,8 +22,8 @@ const NewProject = () => {
     setProjectColor(color.hex);
   };
 
-  // 將新專案新增至資料庫 /PUSH/New-Project
-  const registerNewProject = (values) => {
+  // TODO: 將新專案新增至資料庫 /PUSH/New-Project
+  const onNewProject = (values) => {
     fetch(PROJECT_URL, {
       method: 'POST',
       body: JSON.stringify({
@@ -43,7 +43,7 @@ const NewProject = () => {
           message.success('You have created a new project!');
           return response.json();
         } else {
-          return message.warning('Fail to create new project!');
+          return message.warning('Failed to create new project!');
         }
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ const NewProject = () => {
     }, 1000);
   };
 
-  const cancleProjectHandler = () => {
+  const onCancelProject = () => {
     history.push(`/project/${uid}`);
   };
 
@@ -66,7 +66,7 @@ const NewProject = () => {
         <Form
           form={form}
           name='project'
-          onFinish={registerNewProject}
+          onFinish={onNewProject}
           scrollToFirstError>
           <div className={classes.info}>
             <h4>專案名稱</h4>
@@ -153,7 +153,7 @@ const NewProject = () => {
               <Button
                 type='default'
                 danger
-                onClick={cancleProjectHandler}
+                onClick={onCancelProject}
                 style={{ marginLeft: '1rem' }}>
                 取消
               </Button>

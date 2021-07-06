@@ -1,7 +1,6 @@
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { Button } from 'antd';
-
 import classes from '../../../styles/Panel/Title.module.scss';
 
 import MemberList from './MemberList';
@@ -18,7 +17,7 @@ const MemberContent = () => {
   return (
     <div>
       <div className={classes.title}>
-        <h3>Members</h3>
+        <h3>成員</h3>
         <Button
           type='primary'
           style={{ fontWeight: '700' }}

@@ -94,7 +94,7 @@ const MemberList = () => {
     <>
       <Table
         loading={isLoading}
-        scroll={{ y: 500 }}
+        scroll={{ y: '65vh' }}
         columns={TABLE_COLUMN}
         dataSource={members}
         pagination={false}

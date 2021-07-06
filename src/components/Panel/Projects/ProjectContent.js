@@ -1,13 +1,12 @@
 import { useContext } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 
+import { Button } from 'antd';
 import classes from '../../../styles/Panel/Title.module.scss';
 
-import { Button } from 'antd';
+import AuthContext from '../../../store/auth-context';
 
 import ProjectList from './ProjectList';
-
-import AuthContext from '../../../store/auth-context';
 
 const ProjectContent = () => {
   const { url } = useRouteMatch();
@@ -16,14 +15,13 @@ const ProjectContent = () => {
   const authCtx = useContext(AuthContext);
 
   const newProjectHandler = () => {
-    console.log(url);
     history.push(`${url}/new-project`);
   };
   
   return (
     <div>
       <div className={classes.title}>
-        <h3>Projects</h3>
+        <h3>專案</h3>
         {authCtx.userInfo.level === 'owner' ? (
           <Button
             type='primary'

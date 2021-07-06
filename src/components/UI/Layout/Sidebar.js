@@ -61,8 +61,8 @@ const Sidebar = () => {
         <Menu.Item key='quota' icon={<ContainerOutlined />}>
           Quota
         </Menu.Item>
-        <Menu.Item key='members' icon={<UserOutlined />}>
-          Members
+        <Menu.Item key='users' icon={<UserOutlined />}>
+          Users
         </Menu.Item>
       </Menu>
     </Sider>

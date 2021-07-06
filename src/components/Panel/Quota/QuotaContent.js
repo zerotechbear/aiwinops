@@ -25,7 +25,7 @@ const QuotaContent = () => {
           升級額度
         </Button>
       </div>
-      <div style={{ width: '100%', height: '550px', overflowY: 'scroll' }}>
+      <div style={{ width: '100%', height: '70vh', overflowY: 'scroll' }}>
         <QuotaList />
       </div>
     </>

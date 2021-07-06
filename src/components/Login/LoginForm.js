@@ -1,8 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import classes from '../../styles/Login/LoginForm.module.scss';
-
 import {
   Button,
   Card,
@@ -14,6 +13,8 @@ import {
   message,
 } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
+
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import AuthContext from '../../store/auth-context';
 
@@ -27,8 +28,12 @@ const LoginForm = () => {
 
   const authCtx = useContext(AuthContext);
 
+  const recaptchaRef = useRef();
+
   // TODO: 驗證USER登入 -> POST/auth/login
-  const loginAuthHandler = (values) => {
+  const onLoginAuth = (values) => {
+    // Google ReCaptcha人機驗證 
+    recaptchaRef.current.execute();
     fetch(SIGN_IN_API, {
       method: 'POST',
       body: JSON.stringify({
@@ -65,9 +70,13 @@ const LoginForm = () => {
 
   const checkRemeberEmail = (e) => {
     // 若核可 -> 儲存Email到Cookies
-    if(e.target.checked) {
+    if (e.target.checked) {
       //...
     }
+  };
+
+  const onRecapcha = (value) => {
+    console.log('Captcha: ', value);
   };
 
   return (
@@ -77,27 +86,26 @@ const LoginForm = () => {
       style={{ width: '50rem', height: '100%', margin: '10rem auto' }}>
       <span className={classes.logo} />
       <Form
-        form={form}
         name='login'
-        onFinish={loginAuthHandler}
-        scrollToFirstError
+        form={form}
+        onFinish={onLoginAuth}
         style={{
-          width: '45%',
+          width: '50%',
           left: '50%',
-          marginTop: '3.5rem',
+          margin: '2rem 0 1rem 0',
+          padding: '0.5rem',
           backgroundColor: '#fff',
-          position: 'relative',
         }}>
         <Form.Item
           name='email'
           rules={[
             {
               type: 'email',
-              message: 'The email format is invalid!',
+              message: 'The email is invalid!',
             },
             {
               required: true,
-              message: 'The email is empty!',
+              message: 'The email field should not be empty!',
             },
           ]}>
           <Input prefix={<MailOutlined />} placeholder='Email@domain.com' />
@@ -107,17 +115,29 @@ const LoginForm = () => {
           rules={[
             {
               required: true,
-              message: 'The password is empty!',
+              message: 'The password field shoud not be empty!',
             },
+            {
+              min: 6,
+              message: 'The password should at least contain 6 characters!'
+            }
           ]}>
           <Input.Password
-            placeholder='PASSWORD'
-            autoComplete='on'
+            placeholder='Password'
             prefix={<LockOutlined />}
           />
         </Form.Item>
         <Form.Item>
-          <Checkbox onChange={checkRemeberEmail}>Remember Me</Checkbox>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey='6LdhtHcbAAAAAHDJsSvNZY1foj0BdpIo4CofBPib'
+            theme='light'
+            size='invisible'
+            onChange={onRecapcha}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Checkbox onChange={checkRemeberEmail}>記住我</Checkbox>
         </Form.Item>
         <Form.Item>
           <Button
@@ -130,18 +150,32 @@ const LoginForm = () => {
             }}>
             LOGIN
           </Button>
-        </Form.Item>
-        <Space size={160}>
+        </Form.Item>       
+        <Space size={155}>
           <Typography.Link
             href='https://www.zerodimension.com.tw/default.aspx#contact'
             target='_blank'
             rel='noreferrer'>
-            <Button type='link' style={{ width: '100%', color: '#03a9f4' }}>
+            <Button
+              type='link'
+              style={{
+                width: '100%',
+                border: '1px solid #03a9f4',
+                borderRadius: '5px',
+              }}>
               HELP
             </Button>
           </Typography.Link>
           <Link to='/reset'>
-            <Button type='link'>Find Password</Button>
+            <Button
+              type='link'
+              style={{
+                width: '100%',
+                border: '1px solid #03a9f4',
+                borderRadius: '5px',
+              }}>
+              Forgot Password?
+            </Button>
           </Link>
         </Space>
       </Form>

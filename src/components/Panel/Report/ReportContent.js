@@ -19,6 +19,18 @@ const ReportContent = () => {
       value: 'project3',
       label: 'Project3',
     },
+    {
+      value: 'project4',
+      label: 'Project4',
+    },
+    {
+      value: 'project5',
+      label: 'Project5',
+    },
+    {
+      value: 'project6',
+      label: 'Project6',
+    },
   ];
 
   // 更改專案
@@ -29,7 +41,7 @@ const ReportContent = () => {
   return (
     <>
       <div className={classes.title}>
-        <h3>Report</h3>
+        <h3>報表</h3>
         <Cascader
           defaultValue={['project1']}
           options={options}

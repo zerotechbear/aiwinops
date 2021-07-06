@@ -6,12 +6,12 @@ const DashboardContent = () => {
   return (
     <>
       <div className={classes.title}>
-        <h3>Dashboard</h3>
+        <h3>儀錶板</h3>
       </div>
       <div
         style={{
           width: '100%',
-          height: '560px',
+          height: '72vh',
           overflowY: 'scroll',
           padding: '20px',
           backgroundColor: '#fff',

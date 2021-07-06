@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 30rem;
+  height: 60vh;
   margin: auto;
   padding: 2rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -12,6 +13,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 1.5rem;
   padding: 0 0 1rem 0;
+  font-weight: bold;
 }
 
 .control {

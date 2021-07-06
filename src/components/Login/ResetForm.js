@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-
-import classes from '../../styles/Login/ResetForm.module.scss';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Button, Card, Form, Input, message } from 'antd';
 import { MailOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import classes from '../../styles/Login/ResetForm.module.scss';
 
-// import Card from '../UI/Layout/Card';
-
-// 目前使用 Firebase Authentication模擬登出
 const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FIREBASE_KEY}`;
 
@@ -51,7 +47,7 @@ const ResetForm = (props) => {
 
   return (
     <Card
-      title='Reset Password'
+      title='Forgot Password'
       hoverable
       headStyle={{
         textAlign: 'center',
@@ -69,6 +65,7 @@ const ResetForm = (props) => {
           width: '80%',
           margin: 'auto',
         }}>
+
         <Form.Item
           name='email'
           rules={[

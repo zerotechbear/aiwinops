@@ -3,7 +3,7 @@ import { Descriptions, Card, Badge, Progress, Tooltip } from 'antd';
 const QuotaList = () => {
   return (
     <Card>
-      <Descriptions title='Your Solution' layout='vertical' bordered>
+      <Descriptions title='您的方案' layout='vertical' bordered>
         <Descriptions.Item label='Product'>Cloud Database</Descriptions.Item>
         <Descriptions.Item label='Billing Mode'>Paid</Descriptions.Item>
         <Descriptions.Item label='Automatic Renewal'>YES</Descriptions.Item>

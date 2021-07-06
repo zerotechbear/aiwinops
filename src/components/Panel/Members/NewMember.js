@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
 
-import { Button, Checkbox, Form, Input, Select, message } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import classes from '../../../styles/Panel/Member/NewMember.module.scss';
 
 import PanelLayout from '../../UI/Layout/PanelLayout';
@@ -48,7 +48,7 @@ const NewMember = () => {
   const { uid } = useParams();
   const history = useHistory();
 
-  const { Option } = Select;
+  // const { Option } = Select;
 
   // TODO: 新增會員資料 -> POST/MemberData
   const registerNewMember = (values) => {
@@ -72,22 +72,26 @@ const NewMember = () => {
           message.success('You have created a new member!');
           return response.json();
         } else {
-          return message.warning('Fail to create new member!');
+          return message.warning('Failed to create new member!');
         }
       })
       .catch((error) => {
         throw new Error(error);
       });
-      
+
     setTimeout(() => {
-      history.replace(`/members/${uid}`);
+      history.replace(`/users/${uid}`);
     }, 1000);
   };
+
+  const onCancelUser = () => {
+    history.push(`/users/${uid}`);
+  }
 
   return (
     <PanelLayout>
       <section className={classes.form}>
-        <h2>New Member</h2>
+        <h2>新增成員</h2>
         <Form
           {...formItemLayout}
           form={form}
@@ -153,7 +157,7 @@ const NewMember = () => {
             ]}>
             <Input.Password autoComplete='confirm' />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name='level'
             label='Level'
             initialValue='Owner'
@@ -166,9 +170,9 @@ const NewMember = () => {
             <Select>
               <Option value='Owner'>Owner</Option>
               <Option value='Manager'>Manager</Option>
-              {/* 其他的權限設定 */}
+              其他的權限設定
             </Select>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             {...tailFormItemLayout}
             name='agreement'
@@ -192,6 +196,13 @@ const NewMember = () => {
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
+            <Button
+              type='default'
+              danger
+              onClick={onCancelUser}
+              style={{ marginRight: '7rem' }}>
+              取消
+            </Button>
             <Button type='primary' htmlType='submit'>
               新增會員
             </Button>
