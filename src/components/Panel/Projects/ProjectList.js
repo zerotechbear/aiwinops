@@ -57,6 +57,10 @@ const ProjectList = (props) => {
       title: '專案名稱',
       key: 'name',
       dataIndex: 'name',
+      sorter: {
+        compare: (a, b) => a.name.length > b.name.length,
+        multiple: 10
+      },
       render: (text, record) => {
         return <Link to={`/project/${text}`}>{text}</Link>;
       },
@@ -66,6 +70,11 @@ const ProjectList = (props) => {
       key: 'status',
       dataIndex: 'status',
       editable: true,
+      filters: [
+        { text: 'Completed', value: 'Completed'},
+        { text: 'In Progress', value: 'In Progress'}
+      ],
+      onFilter: (value, record) => record.status.includes(value)
     },
     {
       title: '管理者',

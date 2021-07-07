@@ -3,7 +3,8 @@
   flex-direction: column;
   position: absolute;
   width: 50rem;
-  height: 38rem;
+  height: 85vh;
+  // height: 38rem;
   letter-spacing: 1px;
   margin: auto;
   padding: 1.5rem 2rem;
@@ -11,7 +12,6 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: #fff;
-  overflow-y: scroll;
 }
 
 .settings h2 {

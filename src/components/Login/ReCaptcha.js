@@ -21,7 +21,7 @@ const ReCaptcha = () => {
     onCatchIP();
   }, [onCatchIP]);
 
-  // TODO: 提交表單驗證ReCaptcha需要在後端實作
+  // TODO: 提交表單驗證ReCaptcha需要在後端實作(Cross-Origin-Resource-Strict)
   const onRecapcha = (value) => {
     console.log("Captcha: ", value);
     fetch(GOOGLE_RECAPTCHA, {

@@ -43,7 +43,7 @@ const Header = () => {
 
   const userMenu = (e) => {
     if (e.key === 'settings') {
-      history.push(`/members/${uid}/settings`);
+      history.push(`/users/${uid}/settings`);
     }
     if (e.key === 'logout') {
       authCtx.logout();
