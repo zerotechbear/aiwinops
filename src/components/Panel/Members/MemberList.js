@@ -69,7 +69,7 @@ const MemberList = () => {
       key: 'email',
       dataIndex: 'email',
       render: (text) => {
-        return <Link to='/members/checking'>{text}</Link>;
+        return <Link to='/users/checking'>{text}</Link>;
       },
     },
     {

@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import classes from "../../styles/Login/LoginForm.module.scss";
@@ -15,9 +15,9 @@ import {
 } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 
-import ReCAPTCHA from "react-google-recaptcha";
-
 import AuthContext from "../../store/auth-context";
+
+import ReCaptcha from "./ReCaptcha";
 
 // 目前使用 Firebase Authentication模擬登入
 const FIREBASE_KEY = "AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA";
@@ -28,8 +28,6 @@ const LoginForm = () => {
   const history = useHistory();
 
   const authCtx = useContext(AuthContext);
-
-  const recaptchaRef = useRef();
 
   const [showDrawer, setShowDrawer] = useState(false);
 
@@ -71,15 +69,9 @@ const LoginForm = () => {
       });
   };
 
+  // Todo: 連線到Session後儲存使用者資訊到Cookies中，再由Cookies取得登入Email
   const onCheckSaveEmail = (e) => {
-    // 若核可 -> 儲存Email到Cookies
-    if (e.target.checked) {
-      //...
-    }
-  };
-
-  const onRecapcha = (value) => {
-    console.log("Captcha: ", value);
+    console.log("Remember: ", e.target.checked);
   };
 
   const onShowDrawer = () => {
@@ -140,13 +132,7 @@ const LoginForm = () => {
           <Input.Password placeholder="Password" prefix={<LockOutlined />} />
         </Form.Item>
         <Form.Item>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey="6LdhtHcbAAAAAHDJsSvNZY1foj0BdpIo4CofBPib"
-            theme="light"
-            size="normal"
-            onChange={onRecapcha}
-          />
+          <ReCaptcha />
         </Form.Item>
         <Form.Item>
           <Checkbox onChange={onCheckSaveEmail}>記住我</Checkbox>
@@ -158,15 +144,19 @@ const LoginForm = () => {
             width={720}
             onClose={onNotShowDrawer}
             visible={showDrawer}
-            headerStyle={{ fontWeight: 700}}
+            headerStyle={{ fontWeight: 700 }}
             bodyStyle={{ padding: 20 }}
             footer={
               <div style={{ margin: "1rem" }}>
-                <Button danger onClick={onNotShowDrawer} style={{ marginRight: '2rem'}}>
+                <Button
+                  danger
+                  onClick={onNotShowDrawer}
+                  style={{ marginRight: "2rem" }}
+                >
                   Cancel
                 </Button>
                 <Button type="primary" onClick={onNotShowDrawer}>
-                  Confirm  
+                  Confirm
                 </Button>
               </div>
             }
@@ -205,7 +195,9 @@ const LoginForm = () => {
               。
             </p>
             <h3>五、隱私權保護政策之修正</h3>
-            <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
+            <p>
+              本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。
+            </p>
           </Drawer>
         </Form.Item>
         <Form.Item>
