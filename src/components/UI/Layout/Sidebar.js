@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { Layout, Menu, Button } from 'antd';
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Layout, Menu, Button } from "antd";
 import {
   PieChartOutlined,
   DesktopOutlined,
@@ -9,11 +9,10 @@ import {
   UserOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
 const Sidebar = () => {
   const { Sider } = Layout;
-  const { uid } = useParams();
   const history = useHistory();
 
   const [collapsed, setCollapsed] = useState(false);
@@ -23,45 +22,47 @@ const Sidebar = () => {
   };
 
   const panelInfoRouter = (e) => {
-    history.push(`/${e.key}/${uid}`);
+    history.push(`/${e.key}`);
   };
 
   return (
     <Sider
-      className='site-layout-background'
+      className="site-layout-background"
       trigger={null}
       width={200}
       collapsedWidth={80}
       collapsed={collapsed}
       style={{
-        position: 'relative',
-        height: 'auto',
-        zIndex: '30'
-      }}>
+        position: "relative",
+        height: "auto",
+        zIndex: "30",
+      }}
+    >
       <Button
-        type='dashed'
+        type="dashed"
         onClick={toggleMenu}
-        style={{ display: 'flex', width: '60px', border: 'none' }}>
+        style={{ display: "flex", width: "60px", border: "none" }}
+      >
         {collapsed ? (
-          <MenuUnfoldOutlined style={{ fontSize: '20px' }} />
+          <MenuUnfoldOutlined style={{ fontSize: "20px" }} />
         ) : (
-          <MenuFoldOutlined style={{ fontSize: '20px' }} />
+          <MenuFoldOutlined style={{ fontSize: "20px" }} />
         )}
       </Button>
-      <Menu mode='inline' theme='dark' onClick={panelInfoRouter}>
-        <Menu.Item key='project' icon={<PieChartOutlined />}>
+      <Menu mode="inline" theme="dark" onClick={panelInfoRouter}>
+        <Menu.Item key="projects" icon={<PieChartOutlined />}>
           Project
         </Menu.Item>
-        <Menu.Item key='dashboard' icon={<DesktopOutlined />}>
+        <Menu.Item key="dashboard" icon={<DesktopOutlined />}>
           Dashboard
         </Menu.Item>
-        <Menu.Item key='report' icon={<LineChartOutlined />}>
+        <Menu.Item key="report" icon={<LineChartOutlined />}>
           Report
         </Menu.Item>
-        <Menu.Item key='quota' icon={<ContainerOutlined />}>
+        <Menu.Item key="quota" icon={<ContainerOutlined />}>
           Quota
         </Menu.Item>
-        <Menu.Item key='users' icon={<UserOutlined />}>
+        <Menu.Item key="users" icon={<UserOutlined />}>
           Users
         </Menu.Item>
       </Menu>

@@ -1,16 +1,10 @@
-// import { useContext } from 'react';
-
 import { Layout } from 'antd';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-// import AuthContext from '../../../store/auth-context';
-
 const PanelLayout = (props) => {
   const { Content, Footer } = Layout;
-  
-  // const authCtx = useContext(AuthContext);
 
   const footerStyle = {
     textAlign: 'center',

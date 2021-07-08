@@ -62,7 +62,7 @@ const ProjectList = (props) => {
         multiple: 10
       },
       render: (text, record) => {
-        return <Link to={`/project/${text}`}>{text}</Link>;
+        return <Link to={`/projects/${text}`}>{text}</Link>;
       },
     },
     {

@@ -1,9 +1,7 @@
 import { useContext } from 'react';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import tempAvatar from '../../../assets/icons/avatar.ico';
-
-import classes from '../../../styles/UI/Layout/Header.module.scss';
 
 import { Avatar, Dropdown, Input, Layout, Menu } from 'antd';
 import {
@@ -11,6 +9,8 @@ import {
   LogoutOutlined,
   GlobalOutlined
 } from '@ant-design/icons';
+import classes from '../../../styles/UI/Layout/Header.module.scss';
+
 
 import AuthContext from '../../../store/auth-context';
 
@@ -30,7 +30,6 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const { uid } = useParams();
   const { Header } = Layout;
   const { Search } = Input;
   const history = useHistory();
@@ -43,7 +42,7 @@ const Header = () => {
 
   const userMenu = (e) => {
     if (e.key === 'settings') {
-      history.push(`/users/${uid}/settings`);
+      history.push('/settings');
     }
     if (e.key === 'logout') {
       authCtx.logout();
@@ -54,7 +53,7 @@ const Header = () => {
   const menu = (
     <Menu theme='dark' onClick={userMenu}>
       <Menu.Item key='settings' icon={<SettingOutlined />}>
-        {/* 導向個人資訊頁面 -> /uid/settings */}
+        {/* 導向個人資訊頁面 */}
         Setting
       </Menu.Item>
       <Menu.Item key='logout' icon={<LogoutOutlined />}>
@@ -75,7 +74,7 @@ const Header = () => {
         zIndex: '5',
       }}>
       <div className={classes.logo}>
-        <NavLink to={`/project/${uid}`}>
+        <NavLink to={`/projects`}>
           <GlobalOutlined style={{ fontSize: '20px', marginRight: '5px' }} />
           AIWinOps
         </NavLink>
@@ -89,14 +88,14 @@ const Header = () => {
               className={classes.search}
             />
             <li>
-              <NavLink to={`/project/${uid}`} activeClassName={classes.active}>
+              <NavLink to={`/projects`} activeClassName={classes.active}>
                 Home
               </NavLink>
             </li>
             {navLinks.map((link, index) => (
               <li key={index}>
                 <NavLink
-                  to={`${link.path}/${uid}`}
+                  to={`${link.path}`}
                   activeClassName={classes.active}>
                   {link.title}
                 </NavLink>

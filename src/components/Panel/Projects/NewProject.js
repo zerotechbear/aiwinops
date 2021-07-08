@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { CirclePicker } from 'react-color';
 
 import { Button, Checkbox, Form, Input, message } from 'antd';
@@ -12,7 +12,6 @@ const PROJECT_URL =
 
 const NewProject = () => {
   const [form] = Form.useForm();
-  const { uid } = useParams();
   const { TextArea } = Input;
   const history = useHistory();
 
@@ -51,12 +50,12 @@ const NewProject = () => {
       });
 
     setTimeout(() => {
-      history.push(`/project/${uid}`);
+      history.push(`/projects`);
     }, 1000);
   };
 
   const onCancelProject = () => {
-    history.push(`/project/${uid}`);
+    history.push(`/projects`);
   };
 
   return (

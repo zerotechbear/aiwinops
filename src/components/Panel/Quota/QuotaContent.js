@@ -10,7 +10,6 @@ const QuotaContent = () => {
   const history = useHistory();
 
   const quotaUpgrade = () => {
-    console.log(url);
     history.push(`${url}/quota-upgrade`);
   };
 
