@@ -11,9 +11,9 @@ const DashboardContent = () => {
       <div
         style={{
           width: '100%',
-          height: '72vh',
+          height: '75vh',
           overflowY: 'scroll',
-          padding: '20px',
+          padding: '15px 20px',
           backgroundColor: '#fff',
         }}>
         <DashboardGraph />

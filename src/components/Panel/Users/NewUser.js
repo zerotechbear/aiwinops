@@ -1,12 +1,12 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import { Button, Checkbox, Form, Input, message } from 'antd';
-import classes from '../../../styles/Panel/User/NewUser.module.scss';
+import { Button, Checkbox, Form, Input, message } from "antd";
+import classes from "../../../styles/Panel/User/NewUser.module.scss";
 
-import PanelLayout from '../../UI/Layout/PanelLayout';
+import PanelLayout from "../../UI/Layout/PanelLayout";
 
 // 目前使用 Firebase Realtime Database 模擬會員資料
-const MEMBER_URL = 'https://aiwinops-default-rtdb.firebaseio.com/members.json';
+const MEMBER_URL = "https://aiwinops-default-rtdb.firebaseio.com/members.json";
 
 // const FIREBASE_KEY = 'AIzaSyAaf6guV8zB9_4R5xwuDDiQM0zaNzQWuWA';
 // const SIGN_UP_API = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_KEY}`;
@@ -45,16 +45,13 @@ const tailFormItemLayout = {
 
 const NewUser = () => {
   const [form] = Form.useForm();
-  const { uid } = useParams();
   const history = useHistory();
-
-  // const { Option } = Select;
 
   // TODO: 新增會員資料 -> POST/MemberData
   const registerNewMember = (values) => {
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
     fetch(MEMBER_URL, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         register_time: new Date().toISOString().toString().slice(0, -5),
         email: values.email,
@@ -65,14 +62,14 @@ const NewUser = () => {
         agreement: values.agreement,
         returnSecureToken: true,
       }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
         if (response.ok) {
-          message.success('You have created a new member!');
+          message.success("You have created a new member!");
           return response.json();
         } else {
-          return message.warning('Failed to create new member!');
+          return message.warning("Failed to create new member!");
         }
       })
       .catch((error) => {
@@ -80,13 +77,13 @@ const NewUser = () => {
       });
 
     setTimeout(() => {
-      history.replace(`/users/${uid}`);
+      history.replace("/users");
     }, 1000);
   };
 
   const onCancelUser = () => {
-    history.push(`/users`);
-  }
+    history.push("/users");
+  };
 
   return (
     <PanelLayout>
@@ -95,67 +92,72 @@ const NewUser = () => {
         <Form
           {...formItemLayout}
           form={form}
-          name='register'
+          name="register"
           onFinish={registerNewMember}
-          scrollToFirstError>
+          scrollToFirstError
+        >
           <Form.Item
-            name='username'
-            label='Username'
+            name="username"
+            label="Username"
             rules={[
               {
                 required: true,
-                message: 'Please enter username!',
+                message: "Please enter username!",
               },
-            ]}>
+            ]}
+          >
             <Input />
           </Form.Item>
           <Form.Item
-            name='email'
-            label='E-mail'
+            name="email"
+            label="E-mail"
             rules={[
               {
-                type: 'email',
-                message: 'The email format is invalid!',
+                type: "email",
+                message: "The email format is invalid!",
               },
               {
                 required: true,
-                message: 'Please enter email!',
+                message: "Please enter email!",
               },
-            ]}>
+            ]}
+          >
             <Input />
           </Form.Item>
           <Form.Item
-            name='password'
-            label='Password'
+            name="password"
+            label="Password"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: "Please input your password!",
               },
-            ]}>
-            <Input.Password autoComplete='password' />
+            ]}
+          >
+            <Input.Password autoComplete="password" />
           </Form.Item>
           <Form.Item
-            name='confirm'
-            label='Confirm Password'
-            dependencies={['password']}
+            name="confirm"
+            label="Confirm Password"
+            dependencies={["password"]}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: "Please input your password!",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
+                  if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Passwords are not match!'));
+                  return Promise.reject(new Error("Passwords are not match!"));
                 },
               }),
-            ]}>
-            <Input.Password autoComplete='confirm' />
+            ]}
+          >
+            <Input.Password autoComplete="confirm" />
           </Form.Item>
           {/* <Form.Item
             name='level'
@@ -175,35 +177,38 @@ const NewUser = () => {
           </Form.Item> */}
           <Form.Item
             {...tailFormItemLayout}
-            name='agreement'
-            valuePropName='checked'
+            name="agreement"
+            valuePropName="checked"
             rules={[
               {
                 validator: (_, value) =>
                   value
                     ? Promise.resolve()
-                    : Promise.reject(new Error('Please read the agreement!')),
+                    : Promise.reject(new Error("Please read the agreement!")),
               },
-            ]}>
+            ]}
+          >
             <Checkbox>
               我已經閱讀
               <a
-                href='https://www.zerodimension.com.tw/html/HDUT%20PBL%20PRIVACY.htm'
-                target='_blank'
-                rel='noreferrer'>
+                href="https://www.zerodimension.com.tw/html/HDUT%20PBL%20PRIVACY.htm"
+                target="_blank"
+                rel="noreferrer"
+              >
                 相關聲明
               </a>
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button
-              type='default'
+              type="default"
               danger
               onClick={onCancelUser}
-              style={{ marginRight: '7rem' }}>
+              style={{ marginRight: "7rem" }}
+            >
               取消
             </Button>
-            <Button type='primary' htmlType='submit'>
+            <Button type="primary" htmlType="submit">
               新增會員
             </Button>
           </Form.Item>

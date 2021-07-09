@@ -34,7 +34,7 @@ const ReportGraph = () => {
     <Card
       style={{
         width: '100%',
-        height: '72vh',
+        height: '75vh',
         overflowY: 'scroll',
       }}>
       {/* 傳入專案數據 */}

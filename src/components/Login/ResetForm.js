@@ -10,12 +10,12 @@ const RESET_API = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCod
 
 const ResetForm = (props) => {
   const [form] = Form.useForm();
+  const [isExist, setIsExist] = useState(true);
   const history = useHistory();
 
-  const [isExist, setIsExist] = useState(true);
 
   // TODO: 驗證USER登入 -> POST/auth/reset -> 發送重設密碼信件給已註冊的使用者
-  const resetPasswordHandler = (values) => {
+  const onResetPassword = (values) => {
     fetch(RESET_API, {
       method: 'POST',
       body: JSON.stringify({
@@ -60,7 +60,7 @@ const ResetForm = (props) => {
       <Form
         form={form}
         onValuesChange={emailEnter}
-        onFinish={resetPasswordHandler}
+        onFinish={onResetPassword}
         style={{
           width: '80%',
           margin: 'auto',

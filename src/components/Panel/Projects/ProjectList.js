@@ -1,147 +1,116 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { BackTop, Table, Space, Modal } from 'antd';
+import { useState, useEffect, useCallback, useContext } from "react";
+import { Link } from "react-router-dom";
+import { BackTop, Table, Space, Modal } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
   CloseCircleOutlined,
   CheckCircleOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
-import AuthContext from '../../../store/auth-context';
+import AuthContext from "../../../store/auth-context";
 
 const PROJECT_URL =
-'https://aiwinops-default-rtdb.firebaseio.com/projects.json';
+  "https://aiwinops-default-rtdb.firebaseio.com/projects.json";
 
-const ProjectList = (props) => {
+const ProjectList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [projectData, setProjectData] = useState(null);
   const { confirm } = Modal;
 
   const authCtx = useContext(AuthContext);
   const level = authCtx.userInfo.level;
+
+  // 專案編輯Icon Render
   const actions =
-    level === 'owner'
+    level === "owner"
       ? {
-          title: '其他操作',
-          key: 'editable',
-          dataIndex: 'editable',
+          title: "其他操作",
+          key: "editable",
+          dataIndex: "editable",
+          width: '15%',
           render: () => {
             return (
               <Space>
-                {/* 連結Icon到各自專案的編輯畫面 */}
+                {/* Todo: 連結Icon到各自專案的編輯畫面 */}
                 <EditOutlined
-                  style={{ fontSize: '150%', color: '#096dd9' }}
-                  onClick={showEditModal}
+                  style={{ fontSize: "150%", color: "#096dd9" }}
+                  onClick={onEditModal}
                 />
                 <DeleteOutlined
                   style={{
-                    fontSize: '150%',
-                    margin: '0 1rem',
-                    color: '#ff4d4f',
+                    fontSize: "150%",
+                    margin: "0 1rem",
+                    color: "#ff4d4f",
                   }}
-                  onClick={showDeleteModal}
+                  onClick={onDeleteModal}
                 />
               </Space>
             );
           },
         }
       : {
-          title: '其他操作',
-          key: 'editable',
-          dataIndex: 'editable',
+          title: "其他操作",
+          key: "editable",
+          dataIndex: "editable",
+          width: '15%',
         };
 
+  // Project Table欄位內容
   const TABLE_COLUMN = [
     {
-      title: '專案名稱',
-      key: 'name',
-      dataIndex: 'name',
+      title: "專案名稱",
+      key: "name",
+      dataIndex: "name",
+      width: '15%',
       sorter: {
         compare: (a, b) => a.name.length > b.name.length,
-        multiple: 10
       },
       render: (text, record) => {
         return <Link to={`/projects/${text}`}>{text}</Link>;
       },
     },
     {
-      title: '狀態',
-      key: 'status',
-      dataIndex: 'status',
-      editable: true,
+      title: "管理者",
+      key: "manager",
+      dataIndex: "manager",
+      width: '15%',
+    },
+    {
+      title: "狀態",
+      key: "status",
+      dataIndex: "status",
+      width: '15%',
       filters: [
-        { text: 'Completed', value: 'Completed'},
-        { text: 'In Progress', value: 'In Progress'}
+        { text: "Completed", value: "Completed" },
+        { text: "In Progress", value: "In Progress" },
       ],
-      onFilter: (value, record) => record.status.includes(value)
+      onFilter: (value, record) => record.status.includes(value),
+    },
+    
+    {
+      title: "建立日期",
+      key: "build_time",
+      dataIndex: "build_time",
+      width: '20%',
+      sorter: {
+        compare: (a, b) => a.build_time.localeCompare(b.build_time),
+      },
     },
     {
-      title: '管理者',
-      key: 'manager',
-      dataIndex: 'manager',
-    },
-    {
-      title: '建立日期',
-      key: 'build_time',
-      dataIndex: 'build_time',
-    },
-    {
-      title: '修改日期',
-      key: 'modify_time',
-      dataIndex: 'modify_time',
+      title: "修改日期",
+      key: "modify_time",
+      dataIndex: "modify_time",
+      width: '20%',
+      sorter: {
+        compare: (a, b) => a.build_time.localeCompare(b.build_time),
+      },
     },
     actions,
   ];
-
-  // TODO: 取得後端資料庫的專案資料
-  const showEditModal = () => {
-    confirm({
-      title: 'CHECK',
-      icon: <CheckCircleOutlined style={{ color: '#096dd9' }} />,
-      content: 'Would you like to edit this project?',
-      okText: 'Confirm',
-      okType: 'primary',
-      onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random > 0.5 ? resolve : reject, 1000);
-        })
-          .then(() => {
-            // GET method: 取得資料庫專案資料
-          })
-          .catch(() => {
-            // GET method failed
-          });
-      },
-      onCancel() {},
-    });
-  };
-
-  // TODO: 刪除後端資料庫的專案資料
-  const showDeleteModal = () => {
-    confirm({
-      title: 'DANGER',
-      icon: <CloseCircleOutlined style={{ color: '#ff4d4f' }} />,
-      content: 'Are you sure to delete this project?',
-      okText: 'Delete',
-      okType: 'danger',
-      onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random > 0.5 ? resolve : reject, 2000);
-        })
-          .then(() => {
-            // POST method: 刪除資料庫專案資料
-          })
-          .catch(() => {
-            // POST method failed
-          });
-      },
-      onCancel() {},
-    });
-  };
-
-  // 抓取使用者專案的資料 -> GET/ProjectData
-  const fetchProjectData = useCallback(() => {
+  
+  // TODO: 取得專案資料 -> GET /projects
+  const onFetchProjects = useCallback(() => {
     setIsLoading(true);
     fetch(PROJECT_URL)
       .then((response) => {
@@ -168,20 +137,67 @@ const ProjectList = (props) => {
   }, []);
 
   useEffect(() => {
-    fetchProjectData();
-  }, [fetchProjectData]);
+    onFetchProjects();
+  }, [onFetchProjects]);
+
+
+  // TODO: 取得特定專案資料 -> GET /projects/:projectId
+  const onEditModal = () => {
+    confirm({
+      title: "CHECK",
+      icon: <CheckCircleOutlined style={{ color: "#096dd9" }} />,
+      content: "Would you like to edit this project?",
+      okText: "Confirm",
+      okType: "primary",
+      onOk() {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random > 0.5 ? resolve : reject, 1000);
+        })
+          .then(() => {
+            // GET 成功取得專案
+          })
+          .catch(() => {
+            // GET 取得專案失敗(不存在/拒絕存取)
+          });
+      },
+      onCancel() {},
+    });
+  };
+
+  // TODO: 刪除特定專案資料 -> DELETE /projects/:projectId
+  const onDeleteModal = () => {
+    confirm({
+      title: "DANGER",
+      icon: <CloseCircleOutlined style={{ color: "#ff4d4f" }} />,
+      content: "Are you sure to delete this project?",
+      okText: "Delete",
+      okType: "danger",
+      onOk() {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random > 0.5 ? resolve : reject, 2000);
+        })
+          .then(() => {
+            // DELETE 成功刪除專案
+          })
+          .catch(() => {
+            // DELETE 刪除專案失敗(不存在/拒絕存取)
+          });
+      },
+      onCancel() {},
+    });
+  };
 
   return (
     <>
       <Table
         loading={isLoading}
-        scroll={{ y: '65vh' }}
+        scroll={{ y: "68vh" }}
         columns={TABLE_COLUMN}
         dataSource={projectData}
         pagination={false}
       />
       <BackTop
-        target={() => document.getElementsByClassName('ant-table-body')[0]}
+        target={() => document.getElementsByClassName("ant-table-body")[0]}
         visibilityHeight={300}
       />
     </>

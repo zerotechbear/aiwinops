@@ -62,7 +62,7 @@ const LoginForm = () => {
           authCtx.userInfoHandler(data.email, "owner");
           message.success("You are logged in as Owner!");
         }
-        history.replace('/projects/');
+        history.replace('/projects');
       })
       .catch((error) => {
         console.log(error);

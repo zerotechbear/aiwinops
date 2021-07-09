@@ -10,7 +10,7 @@ const QuotaPage = () => {
       <Route path={`${path}`} exact>
         <QuotaPanel />
       </Route>
-      <Route path={`${path}/quota-upgrade`}>
+      <Route path={`${path}/upgrade`}>
         <QuotaUpgrade />
       </Route>
     </Switch>

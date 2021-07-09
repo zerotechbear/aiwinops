@@ -10,7 +10,7 @@ const QuotaContent = () => {
   const history = useHistory();
 
   const quotaUpgrade = () => {
-    history.push(`${url}/quota-upgrade`);
+    history.push(`${url}/upgrade`);
   };
 
   return (
@@ -24,7 +24,7 @@ const QuotaContent = () => {
           升級額度
         </Button>
       </div>
-      <div style={{ width: '100%', height: '70vh', overflowY: 'scroll' }}>
+      <div style={{ width: '100%', height: '75vh', overflowY: 'scroll' }}>
         <QuotaList />
       </div>
     </>

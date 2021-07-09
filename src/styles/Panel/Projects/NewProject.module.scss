@@ -1,4 +1,4 @@
-.project {
+.create {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -6,31 +6,32 @@
   margin: auto;
   width: 50rem;
   // height: 38rem;
-  height: 82vh;
+  height: 80vh;
   padding: 1.5rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: #fff;
 }
 
-.project h2 {
+.create h2 {
   font-weight: 600;
   border-bottom: 2px solid #eee;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 0;
 }
 
-.info {
+.fileds {
   border-bottom: 2px solid #eee;
 }
 
-.info h4 {
+.fileds h4 {
   margin-top: 1rem;
   font-weight: 700;
 }
 
 .protocol {
   margin-top: 1rem;
+  font-size: 15px;
   padding: 2.5rem;
   background-color: #40a9ff;
   border-radius: 5px;
@@ -38,7 +39,7 @@
 
 .protocol h1 {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 18px;
   letter-spacing: 2px;
 }
 
@@ -48,8 +49,8 @@
   letter-spacing: 2.5px;
 }
 
-.btn {
+.action {
   display: flex;
   justify-content: flex-start;
-  margin: 1rem 0;
+  margin-top: 1rem;
 }
